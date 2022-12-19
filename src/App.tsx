@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import SignUp from './components/SignUp';
+import Login from './components/Login';
 
 function App() {
   // Need state intitialzers here: CurrentUser
@@ -13,6 +14,8 @@ function App() {
     <div className="App">
       <h1>Hello</h1>
       <SignUp />
+      <br />
+      <Login />
     </div>
   );
 }

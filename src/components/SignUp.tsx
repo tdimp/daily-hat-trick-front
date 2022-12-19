@@ -8,12 +8,10 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
 
   
-
-  // Need handler function that sends POST request to backend, creating the user in the database
   // users#create controller action should also log the user in upon successful creation -> set new user.id in session
   // Need a reroute to '/' upon successful creation and log in of new user
 
-  const onSubmit = async (e: React.SyntheticEvent) => {
+  const handleUserSignUp = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     let user = {
       email: email,
@@ -31,7 +29,7 @@ const SignUp = () => {
 
     const data = await response.json();
     if (response.ok) {
-      // Update state with created user data
+      // TODO: Update Redux store with created user data
       alert(`User ${user.username} created!`)
     } else {
       alert("Oops, something went wrong.")
@@ -45,7 +43,7 @@ const SignUp = () => {
   return ( // Controlled sign up form goes here
            // Fields: Email address, Username, Password, Password Confirmation
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleUserSignUp}>
         <label>Email*</label>
           <input type="text" required={true} value={email} onChange={(e) => setEmail(e.target.value)} /><br />
         <label>Username*</label>
