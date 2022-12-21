@@ -1,19 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
 
-  // Initialize state for our controlled sign up form here
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  
-  // users#create controller action should also log the user in upon successful creation -> set new user.id in session
+  const navigate = useNavigate();
+
+  interface User { // TypeScript interface defining the data types of users
+    email: string;
+    username: string;
+    password: string;
+  }
+
   // Need a reroute to '/' upon successful creation and log in of new user
 
   const handleUserSignUp = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-    let user = {
+    let user: User = {
       email: email,
       username: username,
       password: password
@@ -37,6 +43,7 @@ const SignUp = () => {
     setEmail("");
     setUsername("");
     setPassword("");
+    navigate('/')
   }
 
 
