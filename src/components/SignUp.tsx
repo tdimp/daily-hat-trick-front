@@ -7,7 +7,7 @@ const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   interface User { // TypeScript interface defining the data types of users
     email: string;
@@ -43,7 +43,7 @@ const SignUp = () => {
     setEmail("");
     setUsername("");
     setPassword("");
-    navigate('/')
+    //navigate('/')
   }
 
 
