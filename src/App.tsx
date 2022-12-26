@@ -4,6 +4,7 @@ import './App.css';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
+import { UserProvider } from './context/UserContext';
 
 function App() {
   // Need state intitialzers here: CurrentUser
@@ -15,7 +16,10 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <NavBar />
+        <UserProvider>
+          <NavBar />
+        </UserProvider>
+        
         <h1>Hello</h1>
         <SignUp />
         <br />
