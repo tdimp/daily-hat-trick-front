@@ -5,7 +5,7 @@ import { Props } from '../@types/Props';
 export const UserContext = createContext<UserContextType | null>(null)
 
 export const UserProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<UserContextInterface | null>({username: "testUser"});
+  const [user, setUser] = useState<UserContextInterface | null>(null);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
