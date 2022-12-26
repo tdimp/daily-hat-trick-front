@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react';
+import { UserContext } from '../context/UserContext';
 
 const Login = () => {
-
+  const userContext = useContext(UserContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,6 +22,8 @@ const Login = () => {
 
     const data = await response.json();
     if (response.ok) {
+      userContext.setUser(data.email)
+      console.log(userContext)
       alert("Logged in!")
     } else {
       alert(data.error.login)
@@ -35,7 +38,7 @@ const Login = () => {
         <label>Email*</label>
         <input type="text" required={true} value={email} onChange={(e) => setEmail(e.target.value)} /><br />
         <label>Password*</label>
-        <input type="text" required={true} value={password} onChange={(e) => setPassword(e.target.value)} /><br />
+        <input type="password" required={true} value={password} onChange={(e) => setPassword(e.target.value)} /><br />
         <input type="submit" value="Login!" />
       </form>
     </div>

@@ -56,7 +56,7 @@ const SignUp = () => {
         <label>Username*</label>
           <input type="text" required={true} value={username} onChange={(e) => setUsername(e.target.value)} /><br />
         <label>Password*</label>
-          <input type="text" required={true} value={password} onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" required={true} value={password} onChange={(e) => setPassword(e.target.value)} />
         <input type="submit" value="Sign up!" />
       </form>
     </div>
