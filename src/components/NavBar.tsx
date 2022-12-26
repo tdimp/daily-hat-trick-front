@@ -14,7 +14,7 @@ const NavBar = () => {
 
 
   return (
-    <div>{userContext.user ? `${userContext.user.username}` : "Please log in"}<button onClick={handleLogout}>Logout</button></div>
+    <div>{userContext.user ? `${userContext.user}` : "Please log in"}<button onClick={handleLogout}>Logout</button></div>
   )
 }
 
