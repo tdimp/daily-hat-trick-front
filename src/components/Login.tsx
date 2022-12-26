@@ -35,7 +35,7 @@ const Login = () => {
         <label>Email*</label>
         <input type="text" required={true} value={email} onChange={(e) => setEmail(e.target.value)} /><br />
         <label>Password*</label>
-        <input type="text" required={true} value={password} onChange={(e) => setPassword(e.target.value)} /><br />
+        <input type="password" required={true} value={password} onChange={(e) => setPassword(e.target.value)} /><br />
         <input type="submit" value="Login!" />
       </form>
     </div>
