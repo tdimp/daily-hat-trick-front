@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import SignUp from './components/SignUp';
@@ -7,9 +7,6 @@ import NavBar from './components/NavBar';
 import { UserProvider } from './context/UserContext';
 
 function App() {
-  // Need state intitialzers here: CurrentUser
-
-  // useEffect to check if user is logged in
 
   // Need to think of component hierarchy and state management. Redux or useContext?
 
