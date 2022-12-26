@@ -18,14 +18,12 @@ function App() {
       <Router>
         <UserProvider>
           <NavBar />
-          <br />
-          <SignUp />
-        <br />
-        <Login />
         </UserProvider>
         
-        <h1>Daily Hat Trick</h1>
-        
+        <h1>Hello</h1>
+        <SignUp />
+        <br />
+        <Login />
       </Router>
       
     </div>
