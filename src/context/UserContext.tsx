@@ -12,7 +12,7 @@ export const UserProvider = ({ children }: Props) => {
     fetch('/auth')
       .then(res => {
         if(res.ok){
-          res.json().then(user => setUser(user.username))
+          res.json().then(user => setUser({userId: user.id, username: user.username}))
         }
       })
   }, [])

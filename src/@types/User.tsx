@@ -1,5 +1,6 @@
 export interface UserContextInterface {
   username: string | null;
+  userId: number;
 }
 
 export type UserContextType = {
