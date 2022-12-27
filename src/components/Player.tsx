@@ -2,6 +2,8 @@ import React from 'react';
 import { Player } from '../@types/Player';
 
 const Player = () => {
+
+  // Fetch to players#show? Or pass players via props...
   return (
     <div>
       <h2>Player Name</h2>
