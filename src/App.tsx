@@ -4,6 +4,7 @@ import './App.css';
 import SignUp from './components/SignUp';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
+import NewTeamForm from './components/NewTeamForm';
 import { UserProvider } from './context/UserContext';
 
 function App() {
@@ -14,11 +15,10 @@ function App() {
     <div className="App">
       <Router>
         <UserProvider>
-          <NavBar />
-          <br />
-          <SignUp />
-        <br />
-        <Login />
+          <NavBar /> <br />
+          <SignUp /> <br />
+          <Login />
+          <NewTeamForm />
         </UserProvider>
         
         <h1>Daily Hat Trick</h1>
