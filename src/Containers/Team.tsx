@@ -1,11 +1,17 @@
 import React from 'react'
+import { TeamInterface } from '../@types/Team'
 
-const Team = () => {
+
+
+const Team = ({ name }: TeamInterface) => {
 
   // Fetch to teams#show on backend...
+  console.log()
   
   return (
-    <div>Team</div>
+    <div>
+      {name} Hellod
+    </div>
   )
 }
 
