@@ -1,6 +1,7 @@
-export interface Player {
+export interface PlayerInterface {
+  id: number;
   name: string;
   position: string;
-  jerseyNumber: number;
-  nhlTeam: string;
+  jersey_number: number;
+  nhl_team: any;
 }
