@@ -5,24 +5,26 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import NavBar from './components/NavBar';
 import NewTeamForm from './components/NewTeamForm';
+import TeamList from './Containers/TeamList';
+import PlayerList from './Containers/PlayerList';
 import { UserProvider } from './context/UserContext';
 
-function App() {
+const App = () => {
 
   // Need to think of component hierarchy and state management. Redux or useContext?
 
   return (
     <div className="App">
+      <h1>Daily Hat Trick</h1>
       <Router>
         <UserProvider>
           <NavBar /> <br />
           <SignUp /> <br />
           <Login />
           <NewTeamForm />
+          <TeamList />
         </UserProvider>
-        
-        <h1>Daily Hat Trick</h1>
-       
+        <PlayerList />       
       </Router>
       
     </div>
