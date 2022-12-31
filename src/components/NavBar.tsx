@@ -8,13 +8,27 @@ const NavBar = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    userContext.setUser(null);
+    fetch('/logout', {
+      method: "DELETE",
+    })
+    .then(res => {
+      if (res.ok) {
+        userContext.setUser(null);
+        alert("You have successfully logged out.")
+      } else {
+        alert("Oops, something went wrong.")
+      }
+    });
+  }
+
+  const handleLogoutClick = () => {
+    handleLogout();
     navigate('/');
   }
 
 
   return (
-    <div>{userContext.user ? `${userContext.user.username}` : "Please log in"}<button onClick={handleLogout}>Logout</button></div>
+    <div>{userContext.user ? `${userContext.user.username}` : "Please log in"}<button onClick={handleLogoutClick}>Logout</button></div>
   )
 }
 
