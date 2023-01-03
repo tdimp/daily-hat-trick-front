@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { PlayerInterface } from '../@types/Player';
 import Player from '../components/Player';
 import Team from './Team';
@@ -6,10 +7,11 @@ import Team from './Team';
 const PlayerList = () => {
 
   const [players, setPlayers] = useState<PlayerInterface[]>([]);
+  const { page } = useParams();
   // Fetch to players#index on backend...
 
   useEffect(() => {
-    fetch('/players')
+    fetch(`/players/page/${page}`)
     .then(res => res.json())
     .then(data => setPlayers(data))
     .catch(error => alert(error))
