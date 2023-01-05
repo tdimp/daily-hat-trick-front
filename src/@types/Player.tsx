@@ -1,6 +1,6 @@
 export interface PlayerInterface {
   id: number;
-  name: string;
+  full_name: string;
   position: string;
   jersey_number: number;
   nhl_team: any;
