@@ -17,19 +17,16 @@ const App = () => {
     <div className="App">
       <h1>Daily Hat Trick</h1>
       <Router>
-        
         <UserProvider>
           <NavBar /> <br />
-          <SignUp /> <br />
-          <Login />
-          <NewTeamForm />
           <Routes>
-            <Route path="/teams/" element={<TeamList />} />
+            <Route path="/teams" element={<TeamList />} />
+            <Route path="/teams/new" element={<NewTeamForm />} />
           </Routes>
-          
         </UserProvider>
+
         <Routes>
-        <Route path="/players/page/:page" element={<PlayerList />} /> 
+        <Route path="/players/page/:page" element={<PlayerList />} />
         </Routes>
               
       </Router>
