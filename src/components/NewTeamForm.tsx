@@ -35,6 +35,10 @@ const NewTeamForm = () => {
     setTeamName('');
   }
 
+  if(!userContext.user) {
+    return <h3 className='need-auth'>You must be logged in to view this page.</h3>
+  }
+
   return (
     <div>
       <form onSubmit = {onSubmit}>
