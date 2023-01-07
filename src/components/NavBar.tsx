@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
+import Login from './Login';
 
 
 const NavBar = () => {
-  const userContext = useContext(UserContext);
+  const {user, setUser} = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -13,7 +15,7 @@ const NavBar = () => {
     })
     .then(res => {
       if (res.ok) {
-        userContext.setUser(null);
+        setUser(null);
         alert("You have successfully logged out.")
       } else {
         alert("Oops, something went wrong.")
@@ -26,10 +28,24 @@ const NavBar = () => {
     navigate('/');
   }
 
-
-  return (
-    <div>{userContext.user ? `${userContext.user.username}` : "Please log in"}<button onClick={handleLogoutClick}>Logout</button></div>
-  )
+  if(user) {
+    return (
+      <div className="navbar">
+        <Link to="/">Home</Link>
+        <Link to="/teams">Teams</Link>
+        <Link to="/players/page/1">Players</Link>
+        <Link to="/teams/new">Create Team</Link>
+        <button onClick={handleLogoutClick}>Logout</button>
+      </div>
+    )
+  } else {
+    return (
+      <div className="navbar">
+        <Login /> <br />
+        <Link to="/players/page/1">Players</Link>
+      </div>
+    )
+  }
 }
 
 export default NavBar
