@@ -54,7 +54,7 @@ const PlayerList = () => {
     {renderPageButtons()}
       <div>
         {players.map((player) => 
-          <Player key={player.id} id={player.id} full_name={player.full_name} position={player.position} nhl_team={player.nhl_team} jersey_number={player.jersey_number} />
+          <Player key={player.id} id={player.id} full_name={player.full_name} position={player.position} nhl_team={player.nhl_team} jersey_number={player.jersey_number} skater_stats={player.skater_stats} goalie_stats={player.goalie_stats} />
         )
         }
       </div>
