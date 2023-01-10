@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Team from './Team';
+import { Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { TeamInterface } from '../@types/Team';
 
@@ -24,8 +24,9 @@ const TeamList = ( ) => {
 
   return (
     <>
-      {teams?.map((team) => 
-      <Team key={team.id} name={team.name} id={team.id} user_id={team.user_id}/>)}
+      {teams.map((team) => 
+        <Link to ={`/teams/${team.id}`} className="link" key={team.id}>{team.name}</Link>
+      )}
     </>
   )
 }
