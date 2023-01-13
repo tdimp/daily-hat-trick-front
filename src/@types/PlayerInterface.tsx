@@ -1,4 +1,4 @@
-import { GoalieStatsInterface, SkaterStatsInterface } from "./Stats";
+import { GoalieStatsInterface, SkaterStatsInterface } from "./StatsInterface";
 
 export interface PlayerInterface {
   id: number;

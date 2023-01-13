@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
-import { TeamInterface } from '../@types/Team';
+import { TeamInterface } from '../@types/TeamInterface';
 
 const TeamList = ( ) => {
   const [teams, setTeams] = useState<TeamInterface[] | []>([]);

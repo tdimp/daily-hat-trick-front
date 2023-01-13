@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Player from '../components/Player';
-import { PlayerInterface } from '../@types/Player';
-import { SkaterStatsInterface, GoalieStatsInterface } from '../@types/Stats';
+import { PlayerInterface } from '../@types/PlayerInterface';
+import { SkaterStatsInterface, GoalieStatsInterface } from '../@types/StatsInterface';
 
 
 

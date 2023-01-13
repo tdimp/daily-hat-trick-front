@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { UserContextInterface, UserContextType } from '../@types/User';
-import { Props } from '../@types/Props';
+import { UserContextInterface, UserContextType } from '../@types/UserInterface';
+import { Props } from '../@types/PropsInterface';
 
 export const UserContext = createContext({} as UserContextType)
 

@@ -1,4 +1,4 @@
-import { PlayerInterface } from "./Player";
+import { PlayerInterface } from "./PlayerInterface";
 
 export interface TeamInterface {
   id: number;

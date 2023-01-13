@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
-import { TeamInterface } from '../@types/Team';
+import { TeamInterface } from '../@types/TeamInterface';
 
 // Needs User from UserContext for user-team association
 
