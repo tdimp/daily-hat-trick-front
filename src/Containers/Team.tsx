@@ -11,7 +11,7 @@ const Team = () => {
   const [team, setTeam] = useState([]);
   const { id } = useParams();
 
-  const tableRows = ['Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
+  const tableRows = ['', 'Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
 
   // Fetch to teams#show on backend...
   useEffect(() => {
@@ -20,9 +20,22 @@ const Team = () => {
       .then(data => setTeam(data))
       .catch(error => alert(error))
   }, []);
+
   
-  const handleSortClick = () => {
-    console.log("Clicked!") //https://blog.logrocket.com/creating-react-sortable-table/#creating-the-table-markup-in-react
+  
+  const handleDrop = (e: React.SyntheticEvent) => {
+    console.log(e.target)
+    //let filteredTeam = team.filter((player: PlayerInterface) => player.id !== button.value)
+
+    //fetch(`teams/${id}`, {
+    //  method: 'PATCH',
+    //  headers: {
+    //    'Content-Type': 'application/json',
+    //  },
+    //  body: JSON.stringify(filteredTeam)
+    //}) 
+    //.then((res) => res.json())
+    //.then(data => alert(data))//https://blog.logrocket.com/creating-react-sortable-table/#creating-the-table-markup-in-react
   }
 
   return (
@@ -30,12 +43,13 @@ const Team = () => {
       <table>
         <thead>
           <tr>
-            {tableRows.map((row) => <th onClick={handleSortClick}>{row}</th>)}
+            {tableRows.map((row) => <th key={row}>{row}</th>)}
           </tr>
         </thead>
         <tbody>
           {team.map((player: PlayerInterface) => (
             <tr key={player.id}>
+              <td><button onClick={handleDrop}>Drop</button></td>
               <td>{`${player.full_name}, ${player.position}`}</td>
               { player.position !== 'G' ? 
                 <>
@@ -47,7 +61,7 @@ const Team = () => {
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td>{player.skater_stats[0].time_on_ice}</td>
+                  <td>{player.skater_stats[0].time_on_ice_per_game}</td>
                 </> 
                 : 
                 <>

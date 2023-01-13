@@ -7,8 +7,8 @@ import { SkaterStatsInterface } from '../@types/Stats';
 
 const Player = ({ full_name, nhl_team, jersey_number, position, skater_stats, goalie_stats }: PlayerInterface) => {
   
+console.log(skater_stats.length ? skater_stats[0].goals : goalie_stats[0])
 
-  // Fetch to players#show? Or pass players via props...
   return (
     <div>
       <h2>{full_name}, {nhl_team.name}, {position}</h2>
