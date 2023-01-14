@@ -52,7 +52,6 @@ const PlayerList = () => {
           <button onClick={handleNextPageClick}>Next Page</button>
         </>
       )
-      
     }
   }
   
