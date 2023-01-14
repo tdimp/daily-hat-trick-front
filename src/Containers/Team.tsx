@@ -1,11 +1,11 @@
 import React, { useState, useEffect, MouseEvent } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, Link } from 'react-router-dom';
 import { PlayerInterface } from '../@types/PlayerInterface';
 
 
 const Team = () => {
 
-  const [team, setTeam] = useState([]);
+  const [team, setTeam] = useState<PlayerInterface[]>([]);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -44,6 +44,15 @@ const Team = () => {
     } else {
       alert(data.error);
     } 
+  }
+
+  if (!team.length) {
+    return (
+      <div>
+        <h1>Add Players</h1>
+        <Link to='/players/page/1'>View Players</Link>
+      </div>
+    )
   }
 
   return (
