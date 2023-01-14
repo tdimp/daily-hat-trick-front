@@ -34,7 +34,6 @@ const NavBar = () => {
         <Link to="/">Home</Link>
         <Link to="/teams">Teams</Link>
         <Link to="/players/page/1">Players</Link>
-        <Link to="/teams/new">Create Team</Link>
         <button onClick={handleLogoutClick}>Logout</button>
       </div>
     )
