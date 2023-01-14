@@ -22,13 +22,9 @@ const App = () => {
             <Route path="/teams" element={<TeamList />} />
             <Route path="/teams/new" element={<NewTeamForm />} />
             <Route path="/teams/:id" element={<Team />} />
+            <Route path="/players/page/:page" element={<PlayerList />} />
           </Routes>
         </UserProvider>
-
-        <Routes>
-        <Route path="/players/page/:page" element={<PlayerList />} />
-        </Routes>
-              
       </Router>
       
     </div>
