@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
-import NewTeamForm from './components/NewTeamForm';
 import TeamList from './Containers/TeamList';
 import PlayerList from './Containers/PlayerList';
 import Team from './Containers/Team';
@@ -20,7 +19,6 @@ const App = () => {
           <NavBar /> <br />
           <Routes>
             <Route path="/teams" element={<TeamList />} />
-            <Route path="/teams/new" element={<NewTeamForm />} />
             <Route path="/teams/:id" element={<Team />} />
             <Route path="/players/page/:page" element={<PlayerList />} />
           </Routes>
