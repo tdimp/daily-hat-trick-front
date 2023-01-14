@@ -1,41 +1,49 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import Player from '../components/Player';
+import React, { useState, useEffect, MouseEvent } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { PlayerInterface } from '../@types/PlayerInterface';
-import { SkaterStatsInterface, GoalieStatsInterface } from '../@types/StatsInterface';
-
 
 
 const Team = () => {
 
   const [team, setTeam] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
-  const tableRows = ['', 'Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
+  const tableRows = ['Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
 
   // Fetch to teams#show on backend...
   useEffect(() => {
     fetch(`/teams/${id}`)
-      .then(res => res.json())
-      .then(data => setTeam(data))
-      .catch(error => alert(error))
+      .then(res => {
+       if (res.ok) {
+        res.json()
+        .then(data => setTeam(data))
+       } else {
+        alert("Oops, something went wrong.")
+        navigate('/')
+       }
+      })
   }, []);
-
   
-  
-  const handleDrop = (e: React.SyntheticEvent) => {
-    console.log(e.target)
-    //let filteredTeam = team.filter((player: PlayerInterface) => player.id !== button.value)
+  const handleDrop = async (e: MouseEvent<HTMLButtonElement>) => {
+    const droppedId = parseInt(e.currentTarget.value);
+    const filteredTeam = team.filter((player: PlayerInterface) => player.id !== droppedId)
+    
+    const response = await fetch(`/teams/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({droppedId})
+    });
 
-    //fetch(`teams/${id}`, {
-    //  method: 'PATCH',
-    //  headers: {
-    //    'Content-Type': 'application/json',
-    //  },
-    //  body: JSON.stringify(filteredTeam)
-    //}) 
-    //.then((res) => res.json())
-    //.then(data => alert(data))//https://blog.logrocket.com/creating-react-sortable-table/#creating-the-table-markup-in-react
+    const data = await response.json();
+    if (response.ok) {
+      alert(`Player dropped!`);
+      setTeam(filteredTeam);
+    } else {
+      alert(data.error);
+    } 
   }
 
   return (
@@ -49,7 +57,6 @@ const Team = () => {
         <tbody>
           {team.map((player: PlayerInterface) => (
             <tr key={player.id}>
-              <td><button onClick={handleDrop}>Drop</button></td>
               <td>{`${player.full_name}, ${player.position}`}</td>
               { player.position !== 'G' ? 
                 <>
@@ -76,11 +83,9 @@ const Team = () => {
                   <td>{player.goalie_stats[0].time_on_ice}</td>
                 </>
                 }
+              <td><button value={player.id} onClick={handleDrop}>Drop</button></td>
             </tr>
           ))}
-        </tbody>
-        <tbody>
-
         </tbody>
       </table>
     </div>
