@@ -1,26 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { PlayerInterface } from '../@types/Player';
-import Player from '../components/Player';
-import Team from './Team';
+import { PlayerInterface } from '../@types/PlayerInterface';
+import { UserContext } from '../context/UserContext';
 
 const PlayerList = () => {
 
-  const [players, setPlayers] = useState<PlayerInterface[]>([]);
-  const { page }: any = useParams();
-  const navigate = useNavigate();
-  const pageNumber: number = parseInt(page);
+  const [players, setPlayers] = useState([]);
 
-  // Fetch to players#index on backend...
+  const { page }: any = useParams();
+  const pageNumber: number = parseInt(page);
+  const navigate = useNavigate();
+  const { user } = useContext(UserContext);
+
+  const tableRows = ['Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
 
   useEffect(() => {
     fetch(`/players/page/${page}`)
-    .then(res => res.json())
-    .then(data => setPlayers(data))
-    .catch(error => alert(error))
+    .then(res => {
+      if (res.ok) {
+        res.json()
+        .then(data => {
+          setPlayers(data);
+        })
+      } else {
+        alert('Oops, something went wrong.');
+        navigate('/');
+      }
+    });
   }, [page])
-
-  console.log(players)
 
   const handleNextPageClick = () => {
     navigate(`/players/page/${ pageNumber + 1}`)
@@ -50,15 +57,51 @@ const PlayerList = () => {
   }
   
   return (
-    <>
-    {renderPageButtons()}
-      <div>
-        {players.map((player) => 
-          <Player key={player.id} id={player.id} full_name={player.full_name} position={player.position} nhl_team={player.nhl_team} jersey_number={player.jersey_number} skater_stats={player.skater_stats} goalie_stats={player.goalie_stats} />
-        )
-        }
-      </div>
-    </>
+    <div className='table'>
+      {renderPageButtons()}
+      <table>
+        <thead>
+          <tr>
+            {tableRows.map((row) => <th key={row}>{row}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {players.map((player: PlayerInterface) => (
+            <>
+            <tr key={player.id}>
+              <td>{`${player.full_name}, ${player.position}`}</td>
+              { player.position !== 'G' ? 
+                <>
+                  <td>{player.skater_stats[0]?.goals}</td>
+                  <td>{player.skater_stats[0]?.assists}</td>
+                  <td>{player.skater_stats[0]?.pim}</td>
+                  <td>{player.skater_stats[0]?.power_play_points}</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>{player.skater_stats[0]?.time_on_ice_per_game}</td>
+                </> 
+                : 
+                <>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>{player.goalie_stats[0]?.wins}</td>
+                  <td>{player.goalie_stats[0]?.goals_against_average}</td>
+                  <td>{player.goalie_stats[0]?.save_percentage}</td>
+                  <td>{player.goalie_stats[0]?.shutouts}</td>
+                  <td>{player.goalie_stats[0]?.time_on_ice}</td>
+                </>
+                }
+                { user ? <td><button value={player.id}>Add</button></td> : null }
+            </tr>
+            </>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
