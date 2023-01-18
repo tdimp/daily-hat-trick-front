@@ -6,6 +6,6 @@ export interface PlayerInterface {
   position: string;
   jersey_number: number;
   nhl_team: any;
-  skater_stats: SkaterStatsInterface[];
-  goalie_stats: GoalieStatsInterface[];
+  skater_stat: SkaterStatsInterface;
+  goalie_stat: GoalieStatsInterface;
 }
