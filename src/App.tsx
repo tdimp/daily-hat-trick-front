@@ -4,6 +4,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import TeamList from './Containers/TeamList';
 import PlayerList from './Containers/PlayerList';
+import Player from './components/Player';
 import Team from './Containers/Team';
 import { UserProvider } from './context/UserContext';
 
@@ -12,15 +13,16 @@ const App = () => {
   // Need to think of component hierarchy and state management. Redux or useContext?
 
   return (
-    <div className="App">
+    <div className='App'>
       <h1>Daily Hat Trick</h1>
       <Router>
         <UserProvider>
           <NavBar /> <br />
           <Routes>
-            <Route path="/teams" element={<TeamList />} />
-            <Route path="/teams/:id" element={<Team />} />
-            <Route path="/players/page/:page" element={<PlayerList />} />
+            <Route path='/teams' element={<TeamList />} />
+            <Route path='/teams/:id' element={<Team />} />
+            <Route path='/players/page/:page' element={<PlayerList />} />
+            <Route path='/players/:id' element={<Player />} />
           </Routes>
         </UserProvider>
       </Router>
