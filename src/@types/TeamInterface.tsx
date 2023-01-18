@@ -6,3 +6,8 @@ export interface TeamInterface {
   user_id: number;
   players: PlayerInterface[];
 }
+
+export type TeamContextType = {
+  teams: TeamInterface[] | null;
+  setTeams: React.Dispatch<React.SetStateAction<TeamInterface[] | null>>
+}
