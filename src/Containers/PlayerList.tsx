@@ -12,7 +12,7 @@ const PlayerList = () => {
   const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
-  const tableRows = ['Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
+  const tableColumns = ['Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
 
   useEffect(() => {
     fetch(`/players/page/${page}`)
@@ -61,25 +61,25 @@ const PlayerList = () => {
       <table>
         <thead>
           <tr>
-            {tableRows.map((row) => <th key={row}>{row}</th>)}
+            {tableColumns.map((column) => <th key={column}>{column}</th>)}
           </tr>
         </thead>
         <tbody>
           {players.map((player: PlayerInterface) => (
             <>
-            <tr key={player.id}>
+            <tr key={player.id} onClick={() => navigate(`/players/${player.id}`)}>
               <td>{`${player.full_name}, ${player.position}`}</td>
               { player.position !== 'G' ? 
                 <>
-                  <td>{player.skater_stats[0]?.goals}</td>
-                  <td>{player.skater_stats[0]?.assists}</td>
-                  <td>{player.skater_stats[0]?.pim}</td>
-                  <td>{player.skater_stats[0]?.power_play_points}</td>
+                  <td>{player.skater_stat?.goals}</td>
+                  <td>{player.skater_stat?.assists}</td>
+                  <td>{player.skater_stat?.pim}</td>
+                  <td>{player.skater_stat?.power_play_points}</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td>{player.skater_stats[0]?.time_on_ice_per_game}</td>
+                  <td>{player.skater_stat?.time_on_ice_per_game}</td>
                 </> 
                 : 
                 <>
@@ -87,11 +87,11 @@ const PlayerList = () => {
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td>{player.goalie_stats[0]?.wins}</td>
-                  <td>{player.goalie_stats[0]?.goals_against_average}</td>
-                  <td>{player.goalie_stats[0]?.save_percentage}</td>
-                  <td>{player.goalie_stats[0]?.shutouts}</td>
-                  <td>{player.goalie_stats[0]?.time_on_ice}</td>
+                  <td>{player.goalie_stat?.wins}</td>
+                  <td>{player.goalie_stat?.goals_against_average}</td>
+                  <td>{player.goalie_stat?.save_percentage}</td>
+                  <td>{player.goalie_stat?.shutouts}</td>
+                  <td>{player.goalie_stat?.time_on_ice}</td>
                 </>
                 }
                 { user ? <td><button value={player.id}>Add</button></td> : null }

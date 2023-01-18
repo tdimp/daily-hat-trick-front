@@ -9,7 +9,7 @@ const Team = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const tableRows = ['Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
+  const tableColumns = ['Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
 
   // Fetch to teams#show on backend...
   useEffect(() => {
@@ -60,7 +60,7 @@ const Team = () => {
       <table>
         <thead>
           <tr>
-            {tableRows.map((row) => <th key={row}>{row}</th>)}
+            {tableColumns.map((column) => <th key={column}>{column}</th>)}
           </tr>
         </thead>
         <tbody>
@@ -69,15 +69,15 @@ const Team = () => {
               <td>{`${player.full_name}, ${player.position}`}</td>
               { player.position !== 'G' ? 
                 <>
-                  <td>{player.skater_stats[0].goals}</td>
-                  <td>{player.skater_stats[0].assists}</td>
-                  <td>{player.skater_stats[0].pim}</td>
-                  <td>{player.skater_stats[0].power_play_points}</td>
+                  <td>{player.skater_stat.goals}</td>
+                  <td>{player.skater_stat.assists}</td>
+                  <td>{player.skater_stat.pim}</td>
+                  <td>{player.skater_stat.power_play_points}</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td>{player.skater_stats[0].time_on_ice_per_game}</td>
+                  <td>{player.skater_stat.time_on_ice_per_game}</td>
                 </> 
                 : 
                 <>
@@ -85,11 +85,11 @@ const Team = () => {
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
-                  <td>{player.goalie_stats[0].wins}</td>
-                  <td>{player.goalie_stats[0].goals_against_average}</td>
-                  <td>{player.goalie_stats[0].save_percentage}</td>
-                  <td>{player.goalie_stats[0].shutouts}</td>
-                  <td>{player.goalie_stats[0].time_on_ice}</td>
+                  <td>{player.goalie_stat.wins}</td>
+                  <td>{player.goalie_stat.goals_against_average}</td>
+                  <td>{player.goalie_stat.save_percentage}</td>
+                  <td>{player.goalie_stat.shutouts}</td>
+                  <td>{player.goalie_stat.time_on_ice}</td>
                 </>
                 }
               <td><button value={player.id} onClick={handleDrop}>Drop</button></td>
