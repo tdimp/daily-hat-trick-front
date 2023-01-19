@@ -7,6 +7,7 @@ import PlayerList from './Containers/PlayerList';
 import Player from './components/Player';
 import Team from './Containers/Team';
 import { UserProvider } from './context/UserContext';
+import { TeamsProvider } from './context/TeamContext';
 
 const App = () => {
 
@@ -17,6 +18,7 @@ const App = () => {
       <h1>Daily Hat Trick</h1>
       <Router>
         <UserProvider>
+        <TeamsProvider>
           <NavBar /> <br />
           <Routes>
             <Route path='/teams' element={<TeamList />} />
@@ -24,6 +26,7 @@ const App = () => {
             <Route path='/players/page/:page' element={<PlayerList />} />
             <Route path='/players/:id' element={<Player />} />
           </Routes>
+        </TeamsProvider>
         </UserProvider>
       </Router>
       
