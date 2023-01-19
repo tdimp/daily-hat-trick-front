@@ -24,6 +24,14 @@ const Team = () => {
        }
       })
   }, []);
+
+  const handleDeleteTeam = () => {
+    fetch(`/teams/${id}`, {
+      method: 'DELETE'
+    });
+    alert('Team deleted')
+    navigate('/teams')
+  }
   
   const handleDrop = async (e: MouseEvent<HTMLButtonElement>) => {
     const droppedId = parseInt(e.currentTarget.value);
@@ -49,6 +57,7 @@ const Team = () => {
   if (!team.length) {
     return (
       <div>
+        <button onClick={handleDeleteTeam}>Delete Team</button>
         <h1>Add Players</h1>
         <Link to='/players/page/1'>View Players</Link>
       </div>
@@ -57,6 +66,7 @@ const Team = () => {
 
   return (
     <div className='table'>
+      <button onClick={handleDeleteTeam}>Delete Team</button>
       <table>
         <thead>
           <tr>
@@ -65,7 +75,7 @@ const Team = () => {
         </thead>
         <tbody>
           {team.map((player: PlayerInterface) => (
-            <tr key={player.id}>
+            <tr key={player.id} onClick={() => navigate(`/players/${player.id}`)}>
               <td>{`${player.full_name}, ${player.position}`}</td>
               { player.position !== 'G' ? 
                 <>
@@ -99,17 +109,6 @@ const Team = () => {
       </table>
     </div>
   )
-
-  /*
-  return (
-    <div>
-      {team?.map((player: PlayerInterface) => {
-        return (
-          <Player key={player.id} id={player.id} full_name={player.full_name} position={player.position} jersey_number={player.jersey_number} nhl_team={player.nhl_team} skater_stats={player.skater_stats} goalie_stats={player.goalie_stats} />
-        )
-      })} 
-    </div>
-  )*/
 }
 
 
