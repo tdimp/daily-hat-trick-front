@@ -11,7 +11,7 @@ export const TeamsProvider = ({ children }: Props) => {
   const [teams, setTeams] = useState<TeamInterface[] | null>(null);
 
   useEffect(() => {
-    fetch('teams')
+    fetch('/teams')
     .then((res) => {
       if (res.ok) {
         res.json()
