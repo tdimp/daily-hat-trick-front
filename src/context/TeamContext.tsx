@@ -22,8 +22,6 @@ export const TeamsProvider = ({ children }: Props) => {
     });
   }, []);
 
-  console.log(teams)
-
   return (
     <TeamContext.Provider value={{ teams, setTeams }}>
       {children}
