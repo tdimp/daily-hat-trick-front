@@ -36,4 +36,7 @@ export interface GoalieStatsInterface {
   shots_against: number;
   goals_against: number;
   time_on_ice_per_game: number;
+  even_strength_save_percentage: number;
+  power_play_save_percentage: number;
+  short_handed_save_percentage: number;
 }
