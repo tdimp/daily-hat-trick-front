@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { PlayerInterface } from '../@types/PlayerInterface';
 import { UserContext } from '../context/UserContext';
+import { TeamContext } from '../context/TeamContext';
 
 const PlayerList = () => {
 
@@ -10,7 +11,9 @@ const PlayerList = () => {
   const { page }: any = useParams();
   const pageNumber: number = parseInt(page);
   const navigate = useNavigate();
+
   const { user } = useContext(UserContext);
+  const { teams } = useContext(TeamContext);
 
   const tableColumns = ['Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
 
@@ -35,6 +38,16 @@ const PlayerList = () => {
 
   const handlePreviousPageClick = () => {
     navigate(`/players/page/${ pageNumber - 1}`)
+  }
+
+  const handleAddClick = () => {
+    if (teams && teams.length > 1) {
+      console.log('More than one team');
+    } else if (teams && teams.length === 1) {
+      console.log('Fetch to backend here')
+    } else {
+      console.log('You don\'t have any teams!')
+    }
   }
 
   const renderPageButtons = () => {
@@ -66,9 +79,8 @@ const PlayerList = () => {
         </thead>
         <tbody>
           {players.map((player: PlayerInterface) => (
-            <>
-            <tr key={player.id} onClick={() => navigate(`/players/${player.id}`)}>
-              <td>{`${player.full_name}, ${player.position}`}</td>
+            <tr key={player.id}>
+              <td onClick={() => navigate(`/players/${player.id}`)}>{`${player.full_name}, ${player.position}`}</td>
               { player.position !== 'G' ? 
                 <>
                   <td>{player.skater_stat?.goals}</td>
@@ -94,9 +106,8 @@ const PlayerList = () => {
                   <td>{player.goalie_stat?.time_on_ice}</td>
                 </>
                 }
-                { user ? <td><button value={player.id}>Add</button></td> : null }
+                { user ? <td><button value={player.id} onClick={handleAddClick}>Add</button></td> : null }
             </tr>
-            </>
           ))}
         </tbody>
       </table>
