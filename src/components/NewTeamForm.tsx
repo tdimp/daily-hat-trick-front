@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { TeamInterface } from '../@types/TeamInterface';
-import { Navigate } from 'react-router-dom';
 
 // Needs User from UserContext for user-team association
 
@@ -11,7 +10,7 @@ interface Props {
 }
 
 const NewTeamForm = ({ handleCreate}: Props) => {
-  const userContext = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [teamName, setTeamName] = useState('');
 
   const navigate = useNavigate();
@@ -21,7 +20,7 @@ const NewTeamForm = ({ handleCreate}: Props) => {
     e.preventDefault();
     const teamData = {
       name: teamName,
-      user_id: userContext.user?.userId,
+      user_id: user?.userId,
     }
 
     const response = await fetch('/teams', {
@@ -44,13 +43,13 @@ const NewTeamForm = ({ handleCreate}: Props) => {
     setTeamName('');
   }
 
-  if(!userContext.user) {
+  if(!user) {
     return <h3 className='need-auth'>You must be logged in to view this page.</h3>
   }
 
   return (
     <div>
-      <form onSubmit = {onSubmit}>
+      <form onSubmit={onSubmit}>
         <label>Create New Team<br />
           <input type='text' required={true} value={teamName} onChange={(e) => setTeamName(e.target.value)} />
         </label>
