@@ -1,29 +1,40 @@
-import React, { useState, useEffect, MouseEvent } from 'react';
+import React, { useState, useEffect, useContext, MouseEvent } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { PlayerInterface } from '../@types/PlayerInterface';
+import { TeamContext } from '../context/TeamContext';
+import EditTeamForm from '../components/EditTeamForm';
+import { TeamInterface } from '../@types/TeamInterface';
 
 
 const Team = () => {
-
-  const [team, setTeam] = useState<PlayerInterface[]>([]);
+  const { teams } = useContext(TeamContext);
   const { id } = useParams();
+
+  const [team, setTeam] = useState<TeamInterface>({} as TeamInterface);
+  const [players, setPlayers] = useState<PlayerInterface[]>([]);
+
   const navigate = useNavigate();
 
   const tableColumns = ['Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
-
+  
   // Fetch to teams#show on backend...
   useEffect(() => {
     fetch(`/teams/${id}`)
       .then(res => {
        if (res.ok) {
         res.json()
-        .then(data => setTeam(data))
+        .then(data => {
+          setTeam(data);
+          setPlayers(data.players);
+        })
        } else {
         alert("Oops, something went wrong.")
         navigate('/')
        }
       })
-  }, []);
+  }, [team]);
+
+  console.log(team)
 
   const handleDeleteTeam = () => {
     fetch(`/teams/${id}`, {
@@ -32,12 +43,16 @@ const Team = () => {
     alert('Team deleted')
     navigate('/teams')
   }
+
+  const handleUpdate = (newTeam: TeamInterface) => {
+    setTeam(newTeam);
+  }
   
   const handleDrop = async (e: MouseEvent<HTMLButtonElement>) => {
     const droppedId = parseInt(e.currentTarget.value);
-    const filteredTeam = team.filter((player: PlayerInterface) => player.id !== droppedId)
+    const filteredPlayers = players.filter((player: PlayerInterface) => player.id !== droppedId)
     
-    const response = await fetch(`/teams/${id}`, {
+    const response = await fetch(`/teams/${id}/drop_player`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -48,15 +63,16 @@ const Team = () => {
     const data = await response.json();
     if (response.ok) {
       alert(`Player dropped!`);
-      setTeam(filteredTeam);
+      setPlayers(filteredPlayers);
     } else {
       alert(data.error);
     } 
   }
 
-  if (!team.length) {
+  if (!players.length) {
     return (
       <div>
+        <h1>{team?.name}</h1>
         <button onClick={handleDeleteTeam}>Delete Team</button>
         <h1>Add Players</h1>
         <Link to='/players/page/1'>View Players</Link>
@@ -66,7 +82,15 @@ const Team = () => {
 
   return (
     <div className='table'>
-      <button onClick={handleDeleteTeam}>Delete Team</button>
+      <div>
+        <h1>{team?.name}</h1>
+        
+        {team ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : <></>}
+
+        <button>Edit Team Name</button>
+        <button onClick={handleDeleteTeam}>Delete Team</button>
+      </div>
+      
       <table>
         <thead>
           <tr>
@@ -74,9 +98,9 @@ const Team = () => {
           </tr>
         </thead>
         <tbody>
-          {team.map((player: PlayerInterface) => (
-            <tr key={player.id} onClick={() => navigate(`/players/${player.id}`)}>
-              <td>{`${player.full_name}, ${player.position}`}</td>
+          {players.map((player: PlayerInterface) => (
+            <tr key={player.id}>
+              <td onClick={() => navigate(`/players/${player.id}`)}>{`${player.full_name}, ${player.position}`}</td>
               { player.position !== 'G' ? 
                 <>
                   <td>{player.skater_stat.goals}</td>
