@@ -1,10 +1,10 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { UserContextInterface, UserContextType } from '../@types/UserInterface';
-import { Props } from '../@types/PropsInterface';
+import { PropsInterface } from '../@types/PropsInterface';
 
 export const UserContext = createContext({} as UserContextType)
 
-export const UserProvider = ({ children }: Props) => {
+export const UserProvider = ({ children }: PropsInterface) => {
   const [user, setUser] = useState<UserContextInterface | null>(null);
 
   // useEffect to check if user is logged in

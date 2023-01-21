@@ -1,13 +1,13 @@
 import React, { createContext, useState, useEffect } from 'react';
 import { TeamInterface, TeamContextType } from '../@types/TeamInterface';
-import { Props } from '../@types/PropsInterface';
+import { PropsInterface } from '../@types/PropsInterface';
 
 // Need to create TeamContext to provide team list to PlayerList component.
 // This will enable users to select which team to add players to from the PlayerList.
 
 export const TeamContext = createContext({} as TeamContextType)
 
-export const TeamsProvider = ({ children }: Props) => {
+export const TeamsProvider = ({ children }: PropsInterface) => {
   const [teams, setTeams] = useState<TeamInterface[] | null>(null);
 
   useEffect(() => {
