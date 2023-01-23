@@ -16,8 +16,6 @@ export const TeamsProvider = ({ children }: PropsInterface) => {
       if (res.ok) {
         res.json()
         .then(data => setTeams(data))
-      } else {
-        alert('Oops, something went wrong.')
       }
     });
   }, []);
