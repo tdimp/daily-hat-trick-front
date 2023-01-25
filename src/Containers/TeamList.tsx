@@ -10,16 +10,6 @@ const TeamList = () => {
 
   const {user, setUser} = useContext(UserContext);
 
-  // Fetch to teams#index on backend...
-  useEffect(() => {
-    if (user) {
-      fetch('/teams')
-    .then(res => res.json())
-    .then(data => setTeams(data))
-    .catch(error => alert(error))
-    }
-  }, [user])
-
   const handleCreateTeam = (newTeam: TeamInterface) => {
     if (teams) {
       setTeams([...teams, newTeam])
