@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
+import { TeamContext } from '../context/TeamContext';
 import Login from './Login';
-
 
 const NavBar = () => {
   const {user, setUser} = useContext(UserContext);
+  const {teams, setTeams} = useContext(TeamContext);
 
   const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ const NavBar = () => {
     .then(res => {
       if (res.ok) {
         setUser(null);
+        setTeams(null);
         alert("You have successfully logged out.")
       } else {
         alert("Oops, something went wrong.")
