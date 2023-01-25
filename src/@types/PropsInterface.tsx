@@ -4,4 +4,5 @@ export interface PropsInterface {
 
 export interface PopupProps {
   trigger: boolean;
+  setTrigger: React.Dispatch<React.SetStateAction<boolean>>
 }
