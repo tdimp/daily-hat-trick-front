@@ -1,16 +1,16 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import { TeamInterface, TeamContextType } from '../@types/TeamInterface';
 import { PropsInterface } from '../@types/PropsInterface';
-
-// Need to create TeamContext to provide team list to PlayerList component.
-// This will enable users to select which team to add players to from the PlayerList.
+import { UserContext } from './UserContext';
 
 export const TeamContext = createContext({} as TeamContextType)
 
 export const TeamsProvider = ({ children }: PropsInterface) => {
+  const { user } = useContext(UserContext);
   const [teams, setTeams] = useState<TeamInterface[] | null>(null);
 
   useEffect(() => {
+    if (user) {
     fetch('/teams')
     .then((res) => {
       if (res.ok) {
@@ -18,7 +18,8 @@ export const TeamsProvider = ({ children }: PropsInterface) => {
         .then(data => setTeams(data))
       }
     });
-  }, []);
+    }
+  }, [user]);
 
   return (
     <TeamContext.Provider value={{ teams, setTeams }}>
@@ -26,6 +27,3 @@ export const TeamsProvider = ({ children }: PropsInterface) => {
     </TeamContext.Provider>
   )
 }
-
-
-
