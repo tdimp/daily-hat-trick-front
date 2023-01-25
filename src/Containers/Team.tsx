@@ -32,9 +32,7 @@ const Team = () => {
         navigate('/')
        }
       })
-  }, [team]);
-
-  console.log(team)
+  }, []);
 
   const handleDeleteTeam = () => {
     fetch(`/teams/${id}`, {
