@@ -15,7 +15,7 @@ const Team = () => {
 
   const navigate = useNavigate();
 
-  const tableColumns = ['Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
+  const tableColumns = ['Name', 'G', 'A', 'PPP', 'PIM', 'Hits', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
   
   // Fetch to teams#show on backend...
   useEffect(() => {
@@ -103,8 +103,9 @@ const Team = () => {
                 <>
                   <td>{player.skater_stat.goals}</td>
                   <td>{player.skater_stat.assists}</td>
-                  <td>{player.skater_stat.pim}</td>
                   <td>{player.skater_stat.power_play_points}</td>
+                  <td>{player.skater_stat.pim}</td>
+                  <td>{player.skater_stat?.hits}</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
@@ -113,6 +114,7 @@ const Team = () => {
                 </> 
                 : 
                 <>
+                  <td>-</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
