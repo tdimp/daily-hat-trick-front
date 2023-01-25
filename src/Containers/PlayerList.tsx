@@ -7,6 +7,8 @@ import { TeamContext } from '../context/TeamContext';
 const PlayerList = () => {
 
   const [players, setPlayers] = useState([]);
+  const [query, setQuery] = useState("");
+  const [showPageButtons, setShowPageButtons] = useState(true);
 
   const { page }: any = useParams();
   const pageNumber: number = parseInt(page);
@@ -15,7 +17,7 @@ const PlayerList = () => {
   const { user } = useContext(UserContext);
   const { teams } = useContext(TeamContext);
 
-  const tableColumns = ['Name', 'G', 'A', 'PIM', 'PPP', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
+  const tableColumns = ['Name', 'G', 'A', 'PPP', 'PIM', 'Hits', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
 
   useEffect(() => {
     fetch(`/players/page/${page}`)
@@ -30,7 +32,7 @@ const PlayerList = () => {
         navigate('/');
       }
     });
-  }, [page])
+  }, [page, query])
 
   const handleNextPageClick = () => {
     navigate(`/players/page/${ pageNumber + 1}`)
@@ -38,16 +40,6 @@ const PlayerList = () => {
 
   const handlePreviousPageClick = () => {
     navigate(`/players/page/${ pageNumber - 1}`)
-  }
-
-  const handleAddClick = () => {
-    if (teams && teams.length > 1) {
-      console.log('More than one team');
-    } else if (teams && teams.length === 1) {
-      console.log('Fetch to backend here')
-    } else {
-      console.log('You don\'t have any teams!')
-    }
   }
 
   const renderPageButtons = () => {
@@ -67,10 +59,37 @@ const PlayerList = () => {
       )
     }
   }
+
+  const handleSearchChange = (e: React.FormEvent) => {
+    const target = e.target as HTMLFormElement;
+    setQuery(target.value);
+    query ? setShowPageButtons(false) : setShowPageButtons(true);
+  }
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowPageButtons(false);
+    if (query) {
+      fetch(`/players/search/${query}`)
+      .then(res => {
+        if (res.ok) {
+          res.json()
+          .then(data => setPlayers(data))
+        } else {
+          alert(res.statusText);
+        }
+      });
+    }
+  }
   
   return (
     <div className='table'>
-      {renderPageButtons()}
+      {showPageButtons ? renderPageButtons() : ''}
+      <form onSubmit={handleSearchSubmit}>
+        <label>Search</label>
+        <input type="text" value={query} onChange={handleSearchChange}></input>
+        <input type="submit" value="Submit" />
+      </form>
       <table>
         <thead>
           <tr>
@@ -85,8 +104,9 @@ const PlayerList = () => {
                 <>
                   <td>{player.skater_stat?.goals}</td>
                   <td>{player.skater_stat?.assists}</td>
-                  <td>{player.skater_stat?.pim}</td>
                   <td>{player.skater_stat?.power_play_points}</td>
+                  <td>{player.skater_stat?.pim}</td>
+                  <td>{player.skater_stat?.hits}</td>
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
@@ -99,6 +119,7 @@ const PlayerList = () => {
                   <td>-</td>
                   <td>-</td>
                   <td>-</td>
+                  <td>-</td>
                   <td>{player.goalie_stat?.wins}</td>
                   <td>{player.goalie_stat?.goals_against_average}</td>
                   <td>{player.goalie_stat?.save_percentage}</td>
@@ -106,7 +127,6 @@ const PlayerList = () => {
                   <td>{player.goalie_stat?.time_on_ice}</td>
                 </>
                 }
-                { user ? <td><button value={player.id} onClick={handleAddClick}>Add</button></td> : null }
             </tr>
           ))}
         </tbody>
