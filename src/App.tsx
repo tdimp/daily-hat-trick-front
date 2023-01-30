@@ -8,6 +8,7 @@ import Player from './components/Player';
 import Team from './Containers/Team';
 import { UserProvider } from './context/UserContext';
 import { TeamsProvider } from './context/TeamContext';
+import NhlTeamList from './Containers/NhlTeamList';
 
 const App = () => {
 
@@ -25,6 +26,7 @@ const App = () => {
             <Route path='/teams/:id' element={<Team />} />
             <Route path='/players/page/:page' element={<PlayerList />} />
             <Route path='/players/:id' element={<Player />} />
+            <Route path='/nhlteams' element={<NhlTeamList />} />
           </Routes>
         </TeamsProvider>
         </UserProvider>

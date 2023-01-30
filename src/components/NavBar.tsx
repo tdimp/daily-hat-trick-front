@@ -12,15 +12,15 @@ const NavBar = () => {
 
   const handleLogout = () => {
     fetch('/logout', {
-      method: "DELETE",
+      method: 'DELETE',
     })
     .then(res => {
       if (res.ok) {
         setUser(null);
         setTeams(null);
-        alert("You have successfully logged out.")
+        alert('You have successfully logged out.')
       } else {
-        alert("Oops, something went wrong.")
+        alert('Oops, something went wrong.')
       }
     });
   }
@@ -32,18 +32,19 @@ const NavBar = () => {
 
   if(user) {
     return (
-      <div className="navbar">
-        <Link to="/">Home</Link>
-        <Link to="/teams">Teams</Link>
-        <Link to="/players/page/1">Players</Link>
+      <div className='navbar'>
+        <Link to='/'>Home</Link>
+        <Link to='/teams'>Teams</Link>
+        <Link to='/players/page/1'>Players</Link>
+        <Link to='/nhlteams'>NHL Teams</Link>
         <button onClick={handleLogoutClick}>Logout</button>
       </div>
     )
   } else {
     return (
-      <div className="navbar">
+      <div className='navbar'>
         <Login /> <br />
-        <Link to="/players/page/1">Players</Link>
+        <Link to='/players/page/1'>Players</Link>
       </div>
     )
   }
