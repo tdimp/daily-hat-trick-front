@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import { NhlTeamInterface } from '../@types/NhlTeamInterface';
 
 const NhlTeamList = () => {
@@ -20,7 +21,7 @@ const NhlTeamList = () => {
   return (
     <div>
       <ol>
-        {teams?.map((team) => <li>{team.name}</li>)}
+        {teams?.map((team) => <Link key={team.name} to={`/nhlteams/${team.id}`}>{team.name}</Link>)}
       </ol>
     </div>
   )
