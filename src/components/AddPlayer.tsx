@@ -8,7 +8,7 @@ export const AddPlayer = ({trigger, setTrigger}: PopupProps) => {
   const { teams } = useContext(TeamContext);
   const { id } = useParams();
 
-  const [selectValue, setSelectValue] = useState(teams ? teams[0].id : undefined);
+  const [selectValue, setSelectValue] = useState(teams && teams.length ? teams[0].id : undefined);
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -38,7 +38,8 @@ export const AddPlayer = ({trigger, setTrigger}: PopupProps) => {
 
   return trigger ? (
     <div>
-      <div>
+      <div> 
+        { teams?.length ? 
         <form onSubmit={onSubmit}>
           <label>Select Team</label>
           <select value={selectValue} onChange={handleSelectChange}>
@@ -47,7 +48,9 @@ export const AddPlayer = ({trigger, setTrigger}: PopupProps) => {
             ))}
           </select>
           <input type="submit" value="Add Player" />
-        </form>
+        </form> : 
+        <h3>You don't have any teams!</h3>
+       }
         <button onClick={() => setTrigger(!trigger)}>Cancel</button>
       </div>
     </div>
