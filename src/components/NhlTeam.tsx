@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { NhlTeamInterface } from '../@types/NhlTeamInterface';
 import { PlayerInterface } from '../@types/PlayerInterface';
+import PlayerCard from './PlayerCard';
 
 const NhlTeam = () => {
 
@@ -28,7 +29,7 @@ const NhlTeam = () => {
     <div>
       <h1>{team?.name}</h1>
       <ul>
-        {players?.map(player => <h3 key={player.id}>{player.full_name}</h3>)}
+        {players?.map(player => <PlayerCard key={player.id} player={player}/>)}
       </ul>
     </div>
   )
