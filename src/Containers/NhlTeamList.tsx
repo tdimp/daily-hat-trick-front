@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import { NhlTeamInterface } from '../@types/NhlTeamInterface';
+import ErrorPage from '../components/ErrorPage';
 
 const NhlTeamList = () => {
 
   const [teams, setTeams] = useState<NhlTeamInterface[] | null>([] as NhlTeamInterface[]);
+  const [errors, setErrors] = useState('');
 
   useEffect(() => {
     fetch('/nhl_teams')
@@ -13,10 +15,14 @@ const NhlTeamList = () => {
         res.json()
         .then(data => setTeams(data));
       } else {
-        console.log(res.statusText);
+        setErrors(res.statusText);
       }
   });
 }, []);
+
+if (errors) {
+  return <ErrorPage message={errors} />
+}
 
   return (
     <div>

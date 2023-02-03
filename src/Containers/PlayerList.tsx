@@ -3,12 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { PlayerInterface } from '../@types/PlayerInterface';
 import { UserContext } from '../context/UserContext';
 import { TeamContext } from '../context/TeamContext';
+import ErrorPage from '../components/ErrorPage';
 
 const PlayerList = () => {
 
   const [players, setPlayers] = useState([]);
   const [query, setQuery] = useState("");
   const [showPageButtons, setShowPageButtons] = useState(true);
+  const [errors, setErrors] = useState('');
 
   const { page }: any = useParams();
   const pageNumber: number = parseInt(page);
@@ -28,8 +30,7 @@ const PlayerList = () => {
           setPlayers(data);
         })
       } else {
-        alert('Oops, something went wrong.');
-        navigate('/');
+        setErrors(res.statusText);
       }
     });
   }, [page, query])
@@ -80,6 +81,10 @@ const PlayerList = () => {
         }
       });
     }
+  }
+
+  if (errors) {
+    return <ErrorPage message={errors} />
   }
   
   return (
