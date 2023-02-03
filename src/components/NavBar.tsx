@@ -45,6 +45,7 @@ const NavBar = () => {
       <div className='navbar'>
         <Login /> <br />
         <Link to='/players/page/1'>Players</Link>
+        <Link to='/nhlteams'>NHL Teams</Link>
       </div>
     )
   }
