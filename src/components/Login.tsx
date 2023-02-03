@@ -1,12 +1,14 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
 import SignUp from './SignUp';
+import ErrorPage from './ErrorPage';
 
 const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hasAccount, setHasAccount] = useState(true);
+  const [errors, setErrors] = useState('');
 
   const {user, setUser} = useContext(UserContext);
 
@@ -31,12 +33,15 @@ const Login = () => {
     const data = await response.json();
     if (response.ok) {
       setUser(data);
-      alert("Logged in!")
     } else {
-      alert(data.error.login)
+      setErrors(data.error.login)
     }
     setEmail("");
     setPassword("");
+  }
+
+  if (errors) {
+    return <ErrorPage message={errors} />
   }
 
   if(!user && hasAccount) {
