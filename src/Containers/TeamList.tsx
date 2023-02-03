@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { TeamInterface } from '../@types/TeamInterface';
@@ -8,7 +8,7 @@ import NewTeamForm from '../components/NewTeamForm';
 const TeamList = () => {
   const {teams, setTeams} = useContext(TeamContext);
 
-  const {user, setUser} = useContext(UserContext);
+  const {user} = useContext(UserContext);
 
   const handleCreateTeam = (newTeam: TeamInterface) => {
     if (teams) {
