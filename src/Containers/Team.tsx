@@ -8,8 +8,8 @@ import ErrorPage from '../components/ErrorPage';
 
 
 const Team = () => {
-  const { teams } = useContext(TeamContext);
-  const { id } = useParams();
+  const { teams, setTeams } = useContext(TeamContext);
+  const { id } = useParams<{id: string}>();
 
   const [team, setTeam] = useState<TeamInterface>({} as TeamInterface);
   const [players, setPlayers] = useState<PlayerInterface[]>([]);
@@ -36,9 +36,14 @@ const Team = () => {
   }, []);
 
   const handleDeleteTeam = () => {
-    fetch(`/teams/${id}`, {
-      method: 'DELETE'
-    });
+    if (id && teams) {
+      const deletedId = parseInt(id);
+      const newTeams = teams.filter((t) => t.id !== deletedId);
+      fetch(`/teams/${id}`, {
+        method: 'DELETE'
+      });
+      setTeams(newTeams);
+    }
     alert('Team deleted')
     navigate('/teams')
   }
@@ -64,7 +69,7 @@ const Team = () => {
       alert(`Player dropped!`);
       setPlayers(filteredPlayers);
     } else {
-      console.log(data.error);
+      setErrors(data.error);
     } 
   }
 
