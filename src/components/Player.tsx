@@ -4,6 +4,7 @@ import { PlayerInterface } from '../@types/PlayerInterface';
 import { UserContext } from '../context/UserContext';
 import { TeamContext } from '../context/TeamContext';
 import {AddPlayer} from './AddPlayer';
+import ErrorPage from './ErrorPage';
 
 
 const Player = () => {
@@ -13,6 +14,7 @@ const Player = () => {
 
   const [player, setPlayer] = useState<PlayerInterface>({} as PlayerInterface);
   const [trigger, setTrigger] = useState(false);
+  const [errors, setErrors] = useState('');
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const Player = () => {
         res.json()
         .then(data => setPlayer(data))
       } else {
-        console.log(res)
+        setErrors(res.statusText)
       }
     })
   }, [id]);
@@ -33,7 +35,7 @@ const Player = () => {
     setTrigger(!trigger);
   }
 
-  if (player) {
+  if (!errors && player) {
     return (
       <div>
         <div>
@@ -58,10 +60,7 @@ const Player = () => {
     )
   } else {
     return (
-      <div>
-        <h1>Player does not exist</h1>
-        <Link to='/players/page/1'>Players</Link>
-      </div>
+      <ErrorPage message={errors} />
     )
   }
 }

@@ -4,6 +4,7 @@ import { PlayerInterface } from '../@types/PlayerInterface';
 import { TeamContext } from '../context/TeamContext';
 import EditTeamForm from '../components/EditTeamForm';
 import { TeamInterface } from '../@types/TeamInterface';
+import ErrorPage from '../components/ErrorPage';
 
 
 const Team = () => {
@@ -12,6 +13,7 @@ const Team = () => {
 
   const [team, setTeam] = useState<TeamInterface>({} as TeamInterface);
   const [players, setPlayers] = useState<PlayerInterface[]>([]);
+  const [errors, setErrors] = useState('');
 
   const navigate = useNavigate();
 
@@ -28,8 +30,7 @@ const Team = () => {
           setPlayers(data.players);
         })
        } else {
-        alert("Oops, something went wrong.")
-        navigate('/')
+        setErrors(res.statusText);
        }
       })
   }, []);
@@ -63,76 +64,83 @@ const Team = () => {
       alert(`Player dropped!`);
       setPlayers(filteredPlayers);
     } else {
-      alert(data.error);
+      console.log(data.error);
     } 
   }
 
-  if (!players.length) {
-    return (
-      <div>
-        <h1>{team?.name}</h1>
-        <button onClick={handleDeleteTeam}>Delete Team</button>
-        <h1>Add Players</h1>
-        <Link to='/players/page/1'>View Players</Link>
-      </div>
-    )
+  if(errors) {
+    return <ErrorPage message={errors} />
   }
 
-  return (
-    <div className='table'>
-      <div>
-        <h1>{team?.name}</h1>
+  if (team) {
+    return (
+      <> {!players.length ?
+        <div>
+          <h1>{team?.name}</h1>
+          <button onClick={handleDeleteTeam}>Delete Team</button>
+          <h1>Add Players</h1>
+          <Link to='/players/page/1'>View Players</Link>
+        </div> : ""
+      }
+        <div className='table'>
+        <div>
+          <h1>{team?.name}</h1>
+          
+          {team ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : <></>}
+  
+          <button>Edit Team Name</button>
+          <button onClick={handleDeleteTeam}>Delete Team</button>
+        </div>
         
-        {team ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : <></>}
-
-        <button>Edit Team Name</button>
-        <button onClick={handleDeleteTeam}>Delete Team</button>
-      </div>
-      
-      <table>
-        <thead>
-          <tr>
-            {tableColumns.map((column) => <th key={column}>{column}</th>)}
-          </tr>
-        </thead>
-        <tbody>
-          {players.map((player: PlayerInterface) => (
-            <tr key={player.id}>
-              <td onClick={() => navigate(`/players/${player.id}`)}>{`${player.full_name}, ${player.position}`}</td>
-              { player.position !== 'G' ? 
-                <>
-                  <td>{player.skater_stat.goals}</td>
-                  <td>{player.skater_stat.assists}</td>
-                  <td>{player.skater_stat.power_play_points}</td>
-                  <td>{player.skater_stat.pim}</td>
-                  <td>{player.skater_stat?.hits}</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>{player.skater_stat.time_on_ice_per_game}</td>
-                </> 
-                : 
-                <>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>-</td>
-                  <td>{player.goalie_stat.wins}</td>
-                  <td>{player.goalie_stat.goals_against_average}</td>
-                  <td>{player.goalie_stat.save_percentage}</td>
-                  <td>{player.goalie_stat.shutouts}</td>
-                  <td>{player.goalie_stat.time_on_ice}</td>
-                </>
-                }
-              <td><button value={player.id} onClick={handleDrop}>Drop</button></td>
+        <table>
+          <thead>
+            <tr>
+              {tableColumns.map((column) => <th key={column}>{column}</th>)}
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  )
+          </thead>
+          <tbody>
+            {players.map((player: PlayerInterface) => (
+              <tr key={player.id}>
+                <td onClick={() => navigate(`/players/${player.id}`)}>{`${player.full_name}, ${player.position}`}</td>
+                { player.position !== 'G' ? 
+                  <>
+                    <td>{player.skater_stat.goals}</td>
+                    <td>{player.skater_stat.assists}</td>
+                    <td>{player.skater_stat.power_play_points}</td>
+                    <td>{player.skater_stat.pim}</td>
+                    <td>{player.skater_stat?.hits}</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>{player.skater_stat.time_on_ice_per_game}</td>
+                  </> 
+                  : 
+                  <>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>{player.goalie_stat.wins}</td>
+                    <td>{player.goalie_stat.goals_against_average}</td>
+                    <td>{player.goalie_stat.save_percentage}</td>
+                    <td>{player.goalie_stat.shutouts}</td>
+                    <td>{player.goalie_stat.time_on_ice}</td>
+                  </>
+                  }
+                <td><button value={player.id} onClick={handleDrop}>Drop</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      </>
+    )
+  } else {
+    return <ErrorPage message={errors} />
+  }
+ 
 }
 
 
