@@ -81,7 +81,6 @@ const Team = () => {
     return (
       <> {!players.length ?
         <div>
-          <h1>{team?.name}</h1>
           <button onClick={handleDeleteTeam}>Delete Team</button>
           <h1>Add Players</h1>
           <Link to='/players/page/1'>View Players</Link>
