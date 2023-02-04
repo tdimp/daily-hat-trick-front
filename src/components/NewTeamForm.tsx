@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { TeamInterface } from '../@types/TeamInterface';
+import ErrorPage from './ErrorPage';
 
 // Needs User from UserContext for user-team association
 
@@ -12,8 +12,7 @@ interface Props {
 const NewTeamForm = ({ handleCreate}: Props) => {
   const { user } = useContext(UserContext);
   const [teamName, setTeamName] = useState('');
-
-  const navigate = useNavigate();
+  const [errors, setErrors] = useState('');
 
   // POST to teams#create
   const onSubmit = async (e: React.SyntheticEvent) => {
@@ -34,17 +33,18 @@ const NewTeamForm = ({ handleCreate}: Props) => {
     const data = await response.json();
     if (response.ok) {
       handleCreate(data);
-      alert('Team created!');
-      //navigate('/teams');
     } else {
-      console.log(data);
-      alert(data.error);
+      setErrors(data.error);
     }
     setTeamName('');
   }
 
-  if(!user) {
+  if (!user) {
     return <h3 className='need-auth'>You must be logged in to view this page.</h3>
+  }
+
+  if (errors) {
+    return <ErrorPage message={errors} />
   }
 
   return (
