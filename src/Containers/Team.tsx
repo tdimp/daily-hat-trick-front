@@ -15,6 +15,7 @@ const Team = () => {
   const [players, setPlayers] = useState<PlayerInterface[]>([]);
   const [errors, setErrors] = useState('');
   const [showEditForm, setShowEditForm] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState(false);
 
   const navigate = useNavigate();
 
@@ -45,7 +46,6 @@ const Team = () => {
       });
       setTeams(newTeams);
     }
-    alert('Team deleted')
     navigate('/teams')
   }
 
@@ -75,15 +75,15 @@ const Team = () => {
     } 
   }
 
-  if(errors) {
+  if (errors) {
     return <ErrorPage message={errors} />
   }
 
   if (team) {
     return (
-      <> {!players.length ?
+      <> 
+      {!players.length ?
         <div>
-          <button onClick={handleDeleteTeam}>Delete Team</button>
           <h1>Add Players</h1>
           <Link to='/players/page/1'>View Players</Link>
         </div> : ""
@@ -93,7 +93,6 @@ const Team = () => {
           <h1>{team?.name}</h1>
           <button onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
           {team && showEditForm ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : <></>}
-          <button onClick={handleDeleteTeam}>Delete Team</button>
         </div>
         
         <table>
@@ -139,6 +138,13 @@ const Team = () => {
           </tbody>
         </table>
       </div>
+      {!confirmDelete ? <button onClick={() => setConfirmDelete(true)}>Delete Team</button>
+        : 
+        <>
+        <p>Are you sure?</p>
+          <button onClick={() => setConfirmDelete(false)}>Cancel</button> <button onClick={handleDeleteTeam}>Delete</button>
+        </> }
+      
       </>
     )
   } else {
