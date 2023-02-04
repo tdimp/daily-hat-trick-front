@@ -14,6 +14,7 @@ const Team = () => {
   const [team, setTeam] = useState<TeamInterface>({} as TeamInterface);
   const [players, setPlayers] = useState<PlayerInterface[]>([]);
   const [errors, setErrors] = useState('');
+  const [showEditForm, setShowEditForm] = useState(false);
 
   const navigate = useNavigate();
 
@@ -50,6 +51,7 @@ const Team = () => {
 
   const handleUpdate = (newTeam: TeamInterface) => {
     setTeam(newTeam);
+    setShowEditForm(false);
   }
   
   const handleDrop = async (e: MouseEvent<HTMLButtonElement>) => {
@@ -89,10 +91,8 @@ const Team = () => {
         <div className='table'>
         <div>
           <h1>{team?.name}</h1>
-          
-          {team ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : <></>}
-  
-          <button>Edit Team Name</button>
+          <button onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
+          {team && showEditForm ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : <></>}
           <button onClick={handleDeleteTeam}>Delete Team</button>
         </div>
         
