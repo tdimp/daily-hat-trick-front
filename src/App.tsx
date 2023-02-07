@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
 import TeamList from './Containers/TeamList';
@@ -17,7 +17,6 @@ const App = () => {
 
   return (
     <div className='App'>
-      <h1>Daily Hat Trick</h1>
       <Router>
         <UserProvider>
         <TeamsProvider>

@@ -1,5 +1,4 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { TeamInterface } from '../@types/TeamInterface';
 import ErrorPage from './ErrorPage';
@@ -12,7 +11,6 @@ interface Props {
 const EditTeamForm = ({team, handleUpdate}: Props) => {
 
   const { user } = useContext(UserContext);
-  const navigate = useNavigate();
 
   const [teamName, setTeamName] = useState('');
   const [errors, setErrors] = useState('');

@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { PlayerInterface } from '../@types/PlayerInterface';
-import { UserContext } from '../context/UserContext';
-import { TeamContext } from '../context/TeamContext';
 import ErrorPage from '../components/ErrorPage';
 
 const PlayerList = () => {
@@ -15,9 +13,6 @@ const PlayerList = () => {
   const { page }: any = useParams();
   const pageNumber: number = parseInt(page);
   const navigate = useNavigate();
-
-  const { user } = useContext(UserContext);
-  const { teams } = useContext(TeamContext);
 
   const tableColumns = ['Name', 'G', 'A', 'PPP', 'PIM', 'Hits', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
 
@@ -77,7 +72,7 @@ const PlayerList = () => {
           res.json()
           .then(data => setPlayers(data))
         } else {
-          alert(res.statusText);
+          setErrors(res.statusText);
         }
       });
     }
@@ -88,7 +83,8 @@ const PlayerList = () => {
   }
   
   return (
-    <div className='table'>
+    <div className="table-container">
+      <div className='table'>
       {showPageButtons ? renderPageButtons() : ''}
       <form onSubmit={handleSearchSubmit}>
         <label>Search</label>
@@ -136,7 +132,9 @@ const PlayerList = () => {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
+    
   )
 }
 
