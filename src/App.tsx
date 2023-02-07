@@ -20,7 +20,7 @@ const App = () => {
       <Router>
         <UserProvider>
         <TeamsProvider>
-          <NavBar /> <br />
+          <NavBar />
           <Routes>
             <Route path='/teams' element={<TeamList />} />
             <Route path='/teams/:id' element={<Team />} />
