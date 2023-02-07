@@ -3,7 +3,7 @@ import { ErrorProps } from '../@types/PropsInterface';
 
 const ErrorPage = ({ message }: ErrorProps) => {
   return (
-    <div>{message}</div>
+    <div className='error-page'>{message}</div>
   )
 }
 

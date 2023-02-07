@@ -46,7 +46,7 @@ const Login = () => {
 
   if(!user && hasAccount) {
     return (
-      <div>
+      <div className='login'>
         <form onSubmit={handleUserLogin}>
           <label>Email*</label>
           <input type="text" required={true} value={email} onChange={(e) => setEmail(e.target.value)} />

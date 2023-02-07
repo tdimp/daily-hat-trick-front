@@ -81,21 +81,21 @@ const Team = () => {
 
   if (team) {
     return (
-      <> 
+      <div> 
       {!players.length ?
         <div>
           <h1>Add Players</h1>
           <Link to='/players/page/1'>View Players</Link>
         </div> : ""
       }
-        <div className='table'>
+        <div className='team-container'>
         <div>
           <h1>{team?.name}</h1>
           <button onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
           {team && showEditForm ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : <></>}
         </div>
         
-        <table>
+        <table className='table'>
           <thead>
             <tr>
               {tableColumns.map((column) => <th key={column}>{column}</th>)}
@@ -145,7 +145,7 @@ const Team = () => {
           <button onClick={() => setConfirmDelete(false)}>Cancel</button> <button onClick={handleDeleteTeam}>Delete</button>
         </> }
       
-      </>
+      </div>
     )
   } else {
     return <ErrorPage message={errors} />
