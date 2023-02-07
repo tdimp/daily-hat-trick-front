@@ -21,6 +21,15 @@ a {
   font-size: 1.5em;
 }
 
+.navbar {
+  background-color: #9ed8db;
+  padding: 1em;
+}
+
+.home {
+  font-size: 11.32em;
+}
+
 .table-container {
   display: block;
   align-items: center;
@@ -30,11 +39,6 @@ a {
   padding: 1em;
   display: inline;
   align-items: center;
-}
-
-.navbar {
-  background-color: #9ed8db;
-  padding: 1em;
 }
 
 .button {

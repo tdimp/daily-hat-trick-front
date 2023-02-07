@@ -10,6 +10,7 @@ import { UserProvider } from './context/UserContext';
 import { TeamsProvider } from './context/TeamContext';
 import NhlTeamList from './Containers/NhlTeamList';
 import NhlTeam from './components/NhlTeam';
+import Home from './components/Home';
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
         <TeamsProvider>
           <NavBar />
           <Routes>
+            <Route path='/' element ={<Home />} />
             <Route path='/teams' element={<TeamList />} />
             <Route path='/teams/:id' element={<Team />} />
             <Route path='/players/page/:page' element={<PlayerList />} />
