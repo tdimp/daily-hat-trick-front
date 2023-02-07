@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import Login from './Login';
+import ErrorPage from './ErrorPage';
 
 const SignUp = () => {
 
@@ -9,6 +10,7 @@ const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [hasAccount, setHasAccount] = useState(false);
+  const [errors, setErrors] = useState('');
 
   const {user, setUser} = useContext(UserContext);
 
@@ -43,9 +45,8 @@ const SignUp = () => {
     const data = await response.json();
     if (response.ok) {
       setUser(data);
-      alert(`User ${user.username} created!`);
     } else {
-      alert("Oops, something went wrong.");
+      setErrors(response.statusText);
     }
     setEmail("");
     setUsername("");
@@ -53,9 +54,13 @@ const SignUp = () => {
     navigate('/')
   }
 
+  if (errors) {
+    return <ErrorPage message={errors} />
+  }
+
   if(!user && !hasAccount) {
     return (
-      <div>
+      <div className='signup'>
         <form onSubmit={handleUserSignUp}>
           <label>Email*</label>
             <input type="text" required={true} value={email} onChange={(e) => setEmail(e.target.value)} /><br />

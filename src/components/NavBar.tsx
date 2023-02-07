@@ -1,12 +1,15 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { TeamContext } from '../context/TeamContext';
 import Login from './Login';
+import ErrorPage from './ErrorPage';
 
 const NavBar = () => {
   const {user, setUser} = useContext(UserContext);
-  const {teams, setTeams} = useContext(TeamContext);
+  const {setTeams} = useContext(TeamContext);
+
+  const [errors, setErrors] = useState('');
 
   const navigate = useNavigate();
 
@@ -18,9 +21,8 @@ const NavBar = () => {
       if (res.ok) {
         setUser(null);
         setTeams(null);
-        alert('You have successfully logged out.')
       } else {
-        alert('Oops, something went wrong.')
+        setErrors(res.statusText);
       }
     });
   }
@@ -30,9 +32,14 @@ const NavBar = () => {
     navigate('/');
   }
 
+  if (errors) {
+    return <ErrorPage message={errors} />
+  }
+
   if(user) {
     return (
       <div className='navbar'>
+        <h1>Daily Hat Trick</h1>
         <Link to='/'>Home</Link>
         <Link to='/teams'>Teams</Link>
         <Link to='/players/page/1'>Players</Link>
