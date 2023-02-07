@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { PlayerInterface } from '../@types/PlayerInterface';
 import ErrorPage from '../components/ErrorPage';
