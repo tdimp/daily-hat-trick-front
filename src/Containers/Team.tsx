@@ -5,10 +5,12 @@ import { TeamContext } from '../context/TeamContext';
 import EditTeamForm from '../components/EditTeamForm';
 import { TeamInterface } from '../@types/TeamInterface';
 import ErrorPage from '../components/ErrorPage';
+import { UserContext } from '../context/UserContext';
 
 
 const Team = () => {
   const { teams, setTeams } = useContext(TeamContext);
+  const { user } = useContext(UserContext);
   const { id } = useParams<{id: string}>();
 
   const [team, setTeam] = useState<TeamInterface>({} as TeamInterface);
@@ -79,7 +81,7 @@ const Team = () => {
     return <ErrorPage message={errors} />
   }
 
-  if (team) {
+  if (user && team) {
     return (
       <div> 
       {!players.length ?
