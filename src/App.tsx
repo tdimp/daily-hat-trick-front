@@ -2,13 +2,13 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
-import TeamList from './Containers/TeamList';
-import PlayerList from './Containers/PlayerList';
+import TeamList from './containers/TeamList';
+import PlayerList from './containers/PlayerList';
 import Player from './components/Player';
-import Team from './Containers/Team';
+import Team from './containers/Team';
 import { UserProvider } from './context/UserContext';
 import { TeamsProvider } from './context/TeamContext';
-import NhlTeamList from './Containers/NhlTeamList';
+import NhlTeamList from './containers/NhlTeamList';
 import NhlTeam from './components/NhlTeam';
 import Home from './components/Home';
 
