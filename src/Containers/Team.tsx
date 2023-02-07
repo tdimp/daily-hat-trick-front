@@ -35,7 +35,7 @@ const Team = () => {
         setErrors(res.statusText);
        }
       })
-  }, []);
+  }, [id]);
 
   const handleDeleteTeam = () => {
     if (id && teams) {
@@ -144,7 +144,6 @@ const Team = () => {
         <p>Are you sure?</p>
           <button onClick={() => setConfirmDelete(false)}>Cancel</button> <button onClick={handleDeleteTeam}>Delete</button>
         </> }
-      
       </div>
     )
   } else {
