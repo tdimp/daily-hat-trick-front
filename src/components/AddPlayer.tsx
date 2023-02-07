@@ -2,6 +2,7 @@ import React, { useState, useContext} from 'react';
 import { useParams } from 'react-router-dom';
 import { PopupProps } from '../@types/PropsInterface';
 import { TeamContext } from '../context/TeamContext';
+import ErrorPage from './ErrorPage';
 
 export const AddPlayer = ({trigger, setTrigger}: PopupProps) => {
 
@@ -9,6 +10,7 @@ export const AddPlayer = ({trigger, setTrigger}: PopupProps) => {
   const { id } = useParams();
 
   const [selectValue, setSelectValue] = useState(teams && teams.length ? teams[0].id : undefined);
+  const [errors, setErrors] = useState('');
 
   const onSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -23,17 +25,21 @@ export const AddPlayer = ({trigger, setTrigger}: PopupProps) => {
       body: JSON.stringify({addedId})
     });
 
-    const data = await response.json();
+    await response.json();
     if (response.ok) {
-      alert("Player added!")
+      setErrors('Cool')
     } else {
-      console.log(response)
+      setErrors(response.statusText)
     }
   }
 
   const handleSelectChange = (e: React.FormEvent<HTMLSelectElement>) => {
     const target = e.target as HTMLButtonElement;
     setSelectValue(parseInt(target.value));
+  }
+
+  if (errors) {
+    return <ErrorPage message={errors} />
   }
 
   return trigger ? (
@@ -51,7 +57,7 @@ export const AddPlayer = ({trigger, setTrigger}: PopupProps) => {
         </form> : 
         <h3>You don't have any teams!</h3>
        }
-        <button onClick={() => setTrigger(!trigger)}>Cancel</button>
+        <button className='button' onClick={() => setTrigger(!trigger)}>Cancel</button>
       </div>
     </div>
   ) : <></>;
