@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useContext} from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { PlayerInterface } from '../@types/PlayerInterface';
 import { UserContext } from '../context/UserContext';
-import { TeamContext } from '../context/TeamContext';
 import {AddPlayer} from './AddPlayer';
 import ErrorPage from './ErrorPage';
 import PlayerCard from './PlayerCard';
@@ -11,14 +10,12 @@ import PlayerCard from './PlayerCard';
 const Player = () => {
 
   const { user } = useContext(UserContext);
-  const { teams } = useContext(TeamContext);
 
   const [player, setPlayer] = useState<PlayerInterface>({} as PlayerInterface);
   const [trigger, setTrigger] = useState(false);
   const [errors, setErrors] = useState('');
 
   const { id } = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
     fetch(`/players/${id}`)
