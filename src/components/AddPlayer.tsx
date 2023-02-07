@@ -27,7 +27,8 @@ export const AddPlayer = ({trigger, setTrigger}: PopupProps) => {
 
     await response.json();
     if (response.ok) {
-      setErrors('Cool')
+      setErrors(`Player added!`)
+      setTimeout(() => setErrors(''), 2000)
     } else {
       setErrors(response.statusText)
     }
