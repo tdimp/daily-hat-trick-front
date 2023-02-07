@@ -9,14 +9,62 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   font-size: 1rem;
+  background-color: #e9fff9;
+}
+
+input {
+  min-height: 2em;
+  font-size: 1em;
+}
+
+a {
+  font-size: 1.5em;
+}
+
+.table-container {
+  display: block;
+  align-items: center;
+}
+
+.team-header {
+  padding: 1em;
+  display: inline;
+  align-items: center;
 }
 
 .navbar {
-  background-color: rgb(157, 194, 24);
+  background-color: #9ed8db;
+  padding: 1em;
 }
 
-button {
-  font: inherit;
+.button {
+  background-color: #1d3354;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+}
+
+.button-red {
+  background-color: #1d3354;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.button-red:hover {
+  background-color: #d64045;
+}
+
+.button:hover {
+  background-color: #467599;
 }
 
 .team-list {
@@ -28,15 +76,16 @@ button {
   margin-bottom: 0.2em;
   border: 1px solid;
   border-color: #000;
-  background-color: aquamarine;
+  background-color: #e9fff9;
   font-size: 1em;
 }
 
 td {
   border-color: #000;
   border: 1px solid;
-  background-color: rgb(123, 168, 0); 
+  background-color: #9ed8db; 
   padding: 1em;
+  min-width: 5em;
 }
 
 th {
