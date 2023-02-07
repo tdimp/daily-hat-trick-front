@@ -44,7 +44,7 @@ const NavBar = () => {
         <Link to='/teams'>Teams</Link>
         <Link to='/players/page/1'>Players</Link>
         <Link to='/nhlteams'>NHL Teams</Link>
-        <button onClick={handleLogoutClick}>Logout</button>
+        <button className='button-red' onClick={handleLogoutClick}>Logout</button>
       </div>
     )
   } else {

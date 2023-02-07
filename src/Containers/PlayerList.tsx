@@ -40,17 +40,17 @@ const PlayerList = () => {
 
   const renderPageButtons = () => {
     if (pageNumber === 1) {
-      return <button onClick={handleNextPageClick}>Next Page</button>
+      return <button className='button' onClick={handleNextPageClick}>Next Page</button>
     }
     else if (pageNumber >= 33) {
       return (
-        <button onClick={handlePreviousPageClick}>Previous Page</button>
+        <button className='button' onClick={handlePreviousPageClick}>Previous Page</button>
       )
     } else {
       return (
         <>
-          <button onClick={handlePreviousPageClick}>Previous Page</button>
-          <button onClick={handleNextPageClick}>Next Page</button>
+          <button className='button' onClick={handlePreviousPageClick}>Previous Page</button>
+          <button className='button' onClick={handleNextPageClick}>Next Page</button>
         </>
       )
     }
@@ -64,7 +64,6 @@ const PlayerList = () => {
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setShowPageButtons(false);
     if (query) {
       fetch(`/players/search/${query}`)
       .then(res => {
@@ -89,7 +88,7 @@ const PlayerList = () => {
       <form onSubmit={handleSearchSubmit}>
         <label>Search</label>
         <input type="text" value={query} onChange={handleSearchChange}></input>
-        <input type="submit" value="Submit" />
+        <input className='button' type="submit" value="Submit" />
       </form>
       <table>
         <thead>

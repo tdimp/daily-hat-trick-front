@@ -71,7 +71,7 @@ const SignUp = () => {
           <input type="submit" value="Sign up!" />
         </form>
         <>Already have an account?</>
-        <button onClick={handleHasAccountClick}>Log In</button>
+        <button className='button' onClick={handleHasAccountClick}>Log In</button>
       </div>
     )
   } else if(!user && hasAccount) {

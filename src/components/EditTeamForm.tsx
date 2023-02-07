@@ -50,7 +50,7 @@ const EditTeamForm = ({team, handleUpdate}: Props) => {
         <label>Enter New Team Name<br />
           <input type='text' required={true} value={teamName} onChange={(e) => setTeamName(e.target.value)} />
         </label>
-        <input type='submit' value='Update Team' />
+        <input className='button' type='submit' value='Update Team' />
       </form>
     </div>
   )

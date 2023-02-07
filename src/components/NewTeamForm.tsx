@@ -53,7 +53,7 @@ const NewTeamForm = ({ handleCreate}: Props) => {
         <label>Create New Team<br />
           <input type='text' required={true} value={teamName} onChange={(e) => setTeamName(e.target.value)} />
         </label>
-        <input type='submit' value='Create Team' />
+        <input className='button' type='submit' value='Create Team' />
       </form>
     </div>
   )

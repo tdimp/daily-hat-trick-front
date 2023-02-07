@@ -88,10 +88,10 @@ const Team = () => {
           <Link to='/players/page/1'>View Players</Link>
         </div> : ""
       }
-        <div className='team-container'>
-        <div>
+        <div className='table-container'>
+        <div className='team-header'>
           <h1>{team?.name}</h1>
-          <button onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
+          <button className='button' onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
           {team && showEditForm ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : <></>}
         </div>
         
@@ -132,17 +132,17 @@ const Team = () => {
                     <td>{player.goalie_stat.time_on_ice}</td>
                   </>
                   }
-                <td><button value={player.id} onClick={handleDrop}>Drop</button></td>
+                <td><button className='button-red' value={player.id} onClick={handleDrop}>Drop</button></td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      {!confirmDelete ? <button onClick={() => setConfirmDelete(true)}>Delete Team</button>
+      {!confirmDelete ? <button className='button-red' onClick={() => setConfirmDelete(true)}>Delete Team</button>
         : 
         <>
         <p>Are you sure?</p>
-          <button onClick={() => setConfirmDelete(false)}>Cancel</button> <button onClick={handleDeleteTeam}>Delete</button>
+          <button className='button' onClick={() => setConfirmDelete(false)}>Cancel</button> <button className='button-red' onClick={handleDeleteTeam}>Delete</button>
         </> }
       </div>
     )
