@@ -83,14 +83,14 @@ const PlayerList = () => {
   
   return (
     <div className="table-container">
-      <div className='table'>
+      <div className='table-header'>
       {showPageButtons ? renderPageButtons() : ''}
       <form onSubmit={handleSearchSubmit}>
         <label>Search</label>
         <input type="text" value={query} onChange={handleSearchChange}></input>
         <input className='button' type="submit" value="Submit" />
       </form>
-      <table>
+      <table className='table'>
         <thead>
           <tr>
             {tableColumns.map((column) => <th key={column}>{column}</th>)}
