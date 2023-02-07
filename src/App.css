@@ -93,6 +93,18 @@ th {
   margin: 0.1em;
 }
 
+.skater-card {
+  padding: 1em;
+}
+
+.goalie-card {
+  padding: 1em;
+}
+
+.no-stats {
+  padding: 1em;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
