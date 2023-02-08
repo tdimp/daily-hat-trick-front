@@ -75,6 +75,24 @@ a {
   font-size: 1em;
 }
 
+.nhl-grid {
+  display: inline-flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.nhl-card {
+  flex: 1 0 calc(25% - 500px);
+  max-width: 300px;
+  cursor: pointer;
+  border: 1px solid;
+  border-color: #000;
+  margin: 1em;
+}
+
+.nhl-card-text {
+}
+
 .table {
   margin-top: 0.2em;
   margin-bottom: 0.2em;
