@@ -23,7 +23,7 @@ const NhlTeam = () => {
   }, []);
 
 
-  const players = team?.players ? team.players : [];
+  const players = team?.players ? team.players : null;
 
   return (
     <div>
