@@ -9,7 +9,7 @@ import Team from './containers/Team';
 import { UserProvider } from './context/UserContext';
 import { TeamsProvider } from './context/TeamContext';
 import NhlTeamList from './containers/NhlTeamList';
-import NhlTeam from './components/NhlTeam';
+import NhlTeam from './containers/NhlTeam';
 import Home from './components/Home';
 
 const App = () => {

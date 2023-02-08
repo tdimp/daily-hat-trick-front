@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { NhlTeamInterface } from '../@types/NhlTeamInterface';
-import ErrorPage from './ErrorPage';
+import ErrorPage from '../components/ErrorPage';
 
 const NhlTeam = () => {
 
