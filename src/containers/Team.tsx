@@ -82,6 +82,11 @@ const Team = () => {
   }
 
   if (user && team) {
+    const activePlayers = players?.filter((player) => player.goalie_stat || player.skater_stat);
+    const inactivePlayers = players?.filter((player) => !player.goalie_stat && !player.skater_stat);
+    const skaters = activePlayers?.filter((player) => player.position !== 'G').sort((a) => a.position === 'D' ? 1 : 0);
+    const goalies = activePlayers?.filter((player) => player.position === 'G').sort((a, b) => a.jersey_number - b.jersey_number);
+
     return (
       <div> 
       {!players.length ?
@@ -104,39 +109,62 @@ const Team = () => {
             </tr>
           </thead>
           <tbody>
-            {players.map((player: PlayerInterface) => (
-              <tr key={player.id}>
-                <td onClick={() => navigate(`/players/${player.id}`)}>{`${player.full_name}, ${player.position}`}</td>
-                { player.position !== 'G' ? 
-                  <>
-                    <td>{player.skater_stat.goals}</td>
-                    <td>{player.skater_stat.assists}</td>
-                    <td>{player.skater_stat.power_play_points}</td>
-                    <td>{player.skater_stat.pim}</td>
-                    <td>{player.skater_stat?.hits}</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>{player.skater_stat.time_on_ice_per_game}</td>
-                  </> 
-                  : 
-                  <>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>{player.goalie_stat.wins}</td>
-                    <td>{player.goalie_stat.goals_against_average}</td>
-                    <td>{player.goalie_stat.save_percentage}</td>
-                    <td>{player.goalie_stat.shutouts}</td>
-                    <td>{player.goalie_stat.time_on_ice}</td>
-                  </>
-                  }
-                <td><button className='button-red' value={player.id} onClick={handleDrop}>Drop</button></td>
+          {skaters?.map((skater) => {
+            return (
+              <tr key={skater.id}>
+                <td onClick={() => navigate(`/players/${skater.id}`)}>{skater.full_name}, {skater.position}, #{skater.jersey_number}</td>
+                <td>{skater.skater_stat.goals}</td>
+                <td>{skater.skater_stat.assists}</td>
+                <td>{skater.skater_stat.power_play_points}</td>
+                <td>{skater.skater_stat.pim}</td>
+                <td>{skater.skater_stat.hits}</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{skater.skater_stat.time_on_ice_per_game}</td>
+                <td><button className='button-red' value={skater.id} onClick={handleDrop}>Drop</button></td>
               </tr>
-            ))}
+            )
+          })}
+          <tr></tr>
+          {goalies?.map((goalie) => {
+          return (
+            <tr key={goalie.id}>
+              <td onClick={() => {navigate(`/players/${goalie.id}`)}}>{goalie.full_name}, {goalie.position}, #{goalie.jersey_number}</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>{goalie.goalie_stat.wins}</td>
+              <td>{goalie.goalie_stat.goals_against_average.toFixed(2)}</td>
+              <td>{goalie.goalie_stat.save_percentage.toFixed(3)}</td>
+              <td>{goalie.goalie_stat.shutouts}</td>
+              <td>{goalie.goalie_stat.time_on_ice}</td>
+              <td><button className='button-red' value={goalie.id} onClick={handleDrop}>Drop</button></td>
+            </tr>
+          )
+        })}
+        <tr></tr>
+        {inactivePlayers?.map((player) => {
+          return (
+            <tr key={player.id}>
+              <td onClick={() => navigate(`/players/${player.id}`)}>{player.full_name}, {player.position}, #{player.jersey_number}</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td>-</td>
+              <td><button className='button-red' value={player.id} onClick={handleDrop}>Drop</button></td>
+            </tr>
+          )
+        })}
           </tbody>
         </table>
       </div>
@@ -151,7 +179,6 @@ const Team = () => {
   } else {
     return <ErrorPage message={errors} />
   }
- 
 }
 
 

@@ -98,16 +98,17 @@ a {
   margin-bottom: 0.2em;
   border: 1px solid;
   border-color: #000;
+  border-collapse: collapse;
   background-color: #e9fff9;
   font-size: 1em;
 }
 
 td {
-  border-color: #000;
   border: 1px solid;
   background-color: #9ed8db; 
   padding: 1em;
   min-width: 5em;
+  text-align: center;
 }
 
 th {
