@@ -20,15 +20,23 @@ const NhlTeamList = () => {
   });
 }, []);
 
+teams?.sort((a, b) => {
+  if (a.name < b.name) {
+    return -1;
+  }
+  if (a.name > b.name) {
+    return 1;
+  }
+  return 0;
+})
+
 if (errors) {
   return <ErrorPage message={errors} />
 }
 
   return (
-    <div>
-      <ol>
-        {teams?.map((team) => <NhlTeamCard key={team.id} team={team} />)}
-      </ol>
+    <div className='nhl-grid'>
+      {teams?.map((team) => <NhlTeamCard key={team.id} team={team} />)}
     </div>
   )
 }
