@@ -1,3 +1,4 @@
+import { NhlTeamInterface } from "./NhlTeamInterface";
 import { PlayerInterface } from "./PlayerInterface";
 
 export interface PropsInterface {
@@ -15,4 +16,8 @@ export interface ErrorProps {
 
 export interface PlayerPropsInterface {
   player: PlayerInterface;
+}
+
+export interface NhlTeamCardInterface {
+  team: NhlTeamInterface;
 }

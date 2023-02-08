@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
 import { NhlTeamInterface } from '../@types/NhlTeamInterface';
 import ErrorPage from '../components/ErrorPage';
+import NhlTeamCard from '../components/NhlTeamCard';
 
 const NhlTeamList = () => {
 
@@ -27,7 +27,7 @@ if (errors) {
   return (
     <div>
       <ol>
-        {teams?.map((team) => <Link key={team.name} to={`/nhlteams/${team.id}`}>{team.name}</Link>)}
+        {teams?.map((team) => <NhlTeamCard key={team.id} team={team} />)}
       </ol>
     </div>
   )
