@@ -201,13 +201,16 @@ th {
 }
 
 .skater-card {
-  padding: 1em;
+  border: 1px solid;
+  border-color: #000;
 }
 
 .goalie-card {
-  padding: 1em;
+  border: 1px solid;
+  border-color: #000;
 }
 
 .no-stats {
-  padding: 1em;
+  border: 1px solid;
+  border-color: #000;
 }

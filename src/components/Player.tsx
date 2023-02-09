@@ -37,24 +37,11 @@ const Player = () => {
     return (
       <div>
         <div>
-          <h1>{player.full_name}, {player.position}, {player.nhl_team?.name}</h1>
+          <h1>{player.full_name}, {player.position}, {player.nhl_team?.name} #{player.jersey_number}</h1>
           { user && !trigger ? <button className='button' onClick={handleTrigger}>Add Player</button> : "" }
           <AddPlayer trigger={trigger} setTrigger={setTrigger} />
         </div>
         <PlayerCard player={player} />
-        {player.position !== 'G' ? 
-        <p>
-          Goals per game: {player.skater_stat?.goals / player.skater_stat?.games} <br />
-          Assists per game: {player.skater_stat?.assists / player.skater_stat?.games} <br />
-          Points per game: {player.skater_stat?.points / player.skater_stat?.games} <br />
-          Shots per game: {player.skater_stat?.shots / player.skater_stat?.games} <br />
-        </p>
-         : 
-        <p>
-          Even strength save %: {player.goalie_stat?.even_strength_save_percentage / 100.0} <br />
-          Power play save %: {player.goalie_stat?.power_play_save_percentage / 100.0} <br />
-          Short-handed save %: {player.goalie_stat?.short_handed_save_percentage / 100.0} <br />
-        </p>}
       </div>  
     )
   } else {
