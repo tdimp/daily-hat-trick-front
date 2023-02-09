@@ -21,11 +21,13 @@ const TeamList = () => {
   }
 
   return (
-    <div className='team-list'>
+    <div className='container'>
       <NewTeamForm handleCreate={handleCreateTeam}/>
+      <div className='team-container'>
       {teams?.map((team) => 
         <Link to ={`/teams/${team.id}`} className="link" key={team.id}>{team.name}</Link>
       )}
+      </div>
     </div>
   )
 }

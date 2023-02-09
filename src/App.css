@@ -13,7 +13,8 @@ body {
 }
 
 input {
-  min-height: 2em;
+  margin: 0.2em;
+  min-height: 1.5em;
   font-size: 1em;
 }
 
@@ -25,11 +26,23 @@ a {
 
 .navbar {
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   background-color: #9ed8db;
 }
 
 .header-text {
   justify-content: baseline;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+.title-text {
+  display: flex;
+  margin: 1em;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.8em;
 }
 
 .notification {
@@ -48,6 +61,19 @@ a {
   justify-content: center;
 }
 
+.new-team-form {
+  align-items: baseline;
+}
+
+.team-container {
+  width: 100%
+}
+
+.edit-team-form {
+  border: 1px solid;
+  border-color: #000;
+}
+
 .home {
   font-size: 11.32em;
 }
@@ -60,7 +86,7 @@ a {
 .team-header {
   padding: 1em;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly
 }
 
 .button {
@@ -72,6 +98,7 @@ a {
   text-decoration: none;
   display: inline-block;
   font-size: 1rem;
+  max-height: 3em;
 }
 
 .button-red {
@@ -83,6 +110,7 @@ a {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .delete-button {
@@ -96,14 +124,22 @@ a {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .button-red:hover {
   background-color: #d64045;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #d64045;
+  cursor: pointer;
 }
 
 .button:hover {
   background-color: #467599;
+  cursor: pointer;
 }
 
 .team-list {
@@ -115,16 +151,13 @@ a {
   width: 80%;
   justify-content: space-between;
   flex-flow: row wrap;
-  background-color: #467599;
+  background-color: #e9fff9;
 }
 
 .nhl-card {
   flex: 0 1 auto;
   cursor: pointer;
-  border: 1px solid;
-  border-color: #000;
   margin: 1em;
-  background-color: #e9fff9;
   max-width: 150px;
   min-height: 200px;
 }
@@ -148,6 +181,10 @@ a {
   border-collapse: collapse;
   background-color: #e9fff9;
   font-size: 1em;
+}
+
+.error-page {
+  font-weight: bold;
 }
 
 td {

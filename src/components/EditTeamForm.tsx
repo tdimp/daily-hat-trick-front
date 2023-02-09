@@ -45,7 +45,7 @@ const EditTeamForm = ({team, handleUpdate}: Props) => {
   }
 
   return (
-    <div>
+    <div className='edit-team-form'>
       <form onSubmit={onSubmit}>
         <label>Enter New Team Name<br />
           <input type='text' required={true} value={teamName} onChange={(e) => setTeamName(e.target.value)} />

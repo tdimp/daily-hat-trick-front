@@ -38,8 +38,10 @@ const NhlTeam = () => {
   }
 
   return (
-    <div className='table-container'>
-      <h1>{team?.name}</h1>
+    <>
+    <p className='title-text'>{team?.name}</p>
+    <div className='container'>
+      
       <table className='table'>
         <thead>
           <tr>
@@ -103,6 +105,8 @@ const NhlTeam = () => {
         </tbody>
       </table>
     </div>
+    </>
+    
   )
 }
 

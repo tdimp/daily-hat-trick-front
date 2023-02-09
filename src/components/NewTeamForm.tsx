@@ -40,7 +40,7 @@ const NewTeamForm = ({ handleCreate}: Props) => {
   }
 
   if (!user) {
-    return <h3 className='need-auth'>You must be logged in to view this page.</h3>
+    return <p className='error-page'>You must be logged in to view this page.</p>
   }
 
   if (errors) {
@@ -48,9 +48,9 @@ const NewTeamForm = ({ handleCreate}: Props) => {
   }
 
   return (
-    <div>
+    <div className='new-team-form'>
       <form onSubmit={onSubmit}>
-        <label>Create New Team<br />
+        <label className='notification'>Create New Team<br />
           <input type='text' required={true} value={teamName} onChange={(e) => setTeamName(e.target.value)} />
         </label>
         <input className='button' type='submit' value='Create Team' />
