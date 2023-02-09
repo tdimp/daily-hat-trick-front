@@ -35,9 +35,12 @@ if (errors) {
 }
 
   return (
-    <div className='nhl-grid'>
-      {teams?.map((team) => <NhlTeamCard key={team.id} team={team} />)}
+    <div className='container'>
+      <div className='nhl-grid'>
+        {teams?.map((team) => <NhlTeamCard key={team.id} team={team} />)}
+      </div>
     </div>
+    
   )
 }
 

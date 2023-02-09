@@ -9,7 +9,8 @@ const NhlTeamCard = ({ team }: NhlTeamCardInterface) => {
 
   return (
     <div className='nhl-card' onClick={() => navigate(`/nhlteams/${team.id}`)}>
-      <img src={require(`../logos/${teamName}.png`)} alt={`NHL team logo for ${team.name}`} />
+      <img className='nhl-logo' src={require(`../logos/${teamName}.png`)} alt={`NHL team logo for ${team.name}`} />
+      <p className='nhl-card-text'>{team.name}</p>
     </div>
   )
 }

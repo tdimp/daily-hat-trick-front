@@ -82,7 +82,7 @@ const PlayerList = () => {
   }
   
   return (
-    <div className="table-container">
+    <div className="container">
       <div className='table-header'>
       {showPageButtons ? renderPageButtons() : ''}
       <form onSubmit={handleSearchSubmit}>

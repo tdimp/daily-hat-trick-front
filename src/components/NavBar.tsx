@@ -39,7 +39,7 @@ const NavBar = () => {
   if(user) {
     return (
       <div className='navbar'>
-        <h1>Daily Hat Trick</h1>
+        <h1 className='header-text'>Daily Hat Trick</h1>
         <Link to='/'>Home</Link>
         <Link to='/teams'>Teams</Link>
         <Link to='/players/page/1'>Players</Link>

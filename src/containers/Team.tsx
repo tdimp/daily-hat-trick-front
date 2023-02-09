@@ -87,19 +87,28 @@ const Team = () => {
     const skaters = activePlayers?.filter((player) => player.position !== 'G').sort((a) => a.position === 'D' ? 1 : 0);
     const goalies = activePlayers?.filter((player) => player.position === 'G').sort((a, b) => a.jersey_number - b.jersey_number);
 
+  if (!players.length) {
     return (
-      <div> 
-      {!players.length ?
-        <div>
-          <h1>Add Players</h1>
-          <Link to='/players/page/1'>View Players</Link>
-        </div> : ""
-      }
+      <div>
+        <p className='notification'>This team does not have any players!</p>
+        <Link to='/players/page/1'>View Players</Link>
+      </div>
+    )
+  }
+    return (
+      <div className='container'>
         <div className='table-container'>
         <div className='team-header'>
           <h1>{team?.name}</h1>
           <button className='button' onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
-          {team && showEditForm ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : <></>}
+          {team && showEditForm ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : ''}
+
+          {!confirmDelete ? <button className='delete-button' onClick={() => setConfirmDelete(true)}>Delete Team</button>
+        : 
+        <div className='confirm-delete'>
+        <p>Are you sure?</p>
+          <button className='button' onClick={() => setConfirmDelete(false)}>Cancel</button> <button className='button-red' onClick={handleDeleteTeam}>Delete</button>
+        </div> }
         </div>
         
         <table className='table'>
@@ -168,12 +177,6 @@ const Team = () => {
           </tbody>
         </table>
       </div>
-      {!confirmDelete ? <button className='button-red' onClick={() => setConfirmDelete(true)}>Delete Team</button>
-        : 
-        <>
-        <p>Are you sure?</p>
-          <button className='button' onClick={() => setConfirmDelete(false)}>Cancel</button> <button className='button-red' onClick={handleDeleteTeam}>Delete</button>
-        </> }
       </div>
     )
   } else {

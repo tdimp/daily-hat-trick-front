@@ -18,12 +18,34 @@ input {
 }
 
 a {
+  display: inline;
   font-size: 1.5em;
+  margin-inline: 1em;
 }
 
 .navbar {
+  display: flex;
   background-color: #9ed8db;
-  padding: 1em;
+}
+
+.header-text {
+  justify-content: baseline;
+}
+
+.notification {
+  display: inline;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.confirm-delete {
+  display: flex;
+  justify-content: end;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
 }
 
 .home {
@@ -37,8 +59,8 @@ a {
 
 .team-header {
   padding: 1em;
-  display: inline;
-  align-items: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 .button {
@@ -63,6 +85,19 @@ a {
   font-size: 16px;
 }
 
+.delete-button {
+  display: flex;
+  justify-content: end;
+  background-color: #1d3354;
+  border: none;
+  color: white;
+  padding: 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
 .button-red:hover {
   background-color: #d64045;
 }
@@ -76,21 +111,33 @@ a {
 }
 
 .nhl-grid {
-  display: inline-flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  background-color: #467599;
 }
 
 .nhl-card {
-  flex: 1 0 calc(25% - 500px);
-  max-width: 300px;
+  flex: 0 1 auto;
   cursor: pointer;
   border: 1px solid;
   border-color: #000;
   margin: 1em;
+  background-color: #e9fff9;
+  max-width: 150px;
+  min-height: 200px;
 }
 
 .nhl-card-text {
+  text-align: center;
+  font-weight: bold;
+}
+
+.nhl-logo {
+  object-fit: cover;
+  width: 100%;
+  height: 75%;
 }
 
 .table {
@@ -126,9 +173,4 @@ th {
 
 .no-stats {
   padding: 1em;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
