@@ -10,6 +10,12 @@ body {
     sans-serif;
   font-size: 1rem;
   background-color: #e9fff9;
+  background-image: url(hockey.webp);
+  background-color: #9ed8db;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 input {
@@ -84,9 +90,10 @@ a {
 }
 
 .team-header {
-  padding: 1em;
+  min-height: 75px;
   display: flex;
-  justify-content: space-evenly
+  justify-content: space-evenly;
+  flex: 1;
 }
 
 .button {
