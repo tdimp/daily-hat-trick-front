@@ -55,7 +55,7 @@ const Login = () => {
           <input type="submit" value="Login!" />
         </form>
         <>Don't have an account?</>
-        <button className='button' onClick={handleHasAccountClick}>Sign Up</button>
+        <button className="btn btn-primary" onClick={handleHasAccountClick}>Sign Up</button>
       </div>
     )
   } else if(!user && !hasAccount) {
