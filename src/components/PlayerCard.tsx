@@ -68,7 +68,7 @@ const PlayerCard = ({player}: PlayerPropsInterface) => {
       </div>
     )
   } else if (player.position === 'G' && player.goalie_stat) {
-    const simpleColumns = ['Starts', 'Wins', 'OT Wins', 'SO', 'SV%', 'GAA', 'TOI'];
+    const simpleColumns = ['Starts', 'Wins', 'OT L', 'SO', 'SV%', 'GAA', 'TOI'];
     const advancedColumns = ['Games', 'Losses', 'SA', 'GA', 'Saves', 'Even SV%', 'PP SV%', 'SH SV%'];
     
     return (
