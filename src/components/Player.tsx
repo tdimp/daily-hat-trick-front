@@ -38,7 +38,7 @@ const Player = () => {
       <div>
         <div>
           <h1>{player.full_name}, {player.position}, {player.nhl_team?.name} #{player.jersey_number}</h1>
-          { user && !trigger ? <button className='button' onClick={handleTrigger}>Add Player</button> : "" }
+          { user && !trigger ? <button className='btn btn-primary btn-sm' onClick={handleTrigger}>Add Player</button> : "" }
           <AddPlayer trigger={trigger} setTrigger={setTrigger} />
         </div>
         <PlayerCard player={player} />

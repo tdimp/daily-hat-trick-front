@@ -68,10 +68,10 @@ const SignUp = () => {
             <input type="text" required={true} value={username} onChange={(e) => setUsername(e.target.value)} /><br />
           <label>Password*</label>
             <input type="password" required={true} value={password} onChange={(e) => setPassword(e.target.value)} />
-          <input type="submit" value="Sign up!" />
+          <input className='btn btn-primary btn-sm' type="submit" value="Sign up!" />
         </form>
         <>Already have an account?</>
-        <button className='button' onClick={handleHasAccountClick}>Log In</button>
+        <button className='btn btn-primary btn-sm' onClick={handleHasAccountClick}>Log In</button>
       </div>
     )
   } else if(!user && hasAccount) {

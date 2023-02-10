@@ -17,7 +17,7 @@ const PlayerList = () => {
   const tableColumns = ['Name', 'G', 'A', 'PPP', 'PIM', 'Hits', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
 
   useEffect(() => {
-    fetch(`/players/page/${page}`)
+    fetch(`/players/all/${page}`)
     .then(res => {
       if (res.ok) {
         res.json()
@@ -31,28 +31,14 @@ const PlayerList = () => {
   }, [page, query])
 
   const handleNextPageClick = () => {
-    navigate(`/players/page/${ pageNumber + 1}`)
+    if (pageNumber < 33) {
+      navigate(`/players/all/${ pageNumber + 1}`)
+    }
   }
 
   const handlePreviousPageClick = () => {
-    navigate(`/players/page/${ pageNumber - 1}`)
-  }
-
-  const renderPageButtons = () => {
-    if (pageNumber === 1) {
-      return <button className='button' onClick={handleNextPageClick}>Next Page</button>
-    }
-    else if (pageNumber >= 33) {
-      return (
-        <button className='button' onClick={handlePreviousPageClick}>Previous Page</button>
-      )
-    } else {
-      return (
-        <>
-          <button className='button' onClick={handlePreviousPageClick}>Previous Page</button>
-          <button className='button' onClick={handleNextPageClick}>Next Page</button>
-        </>
-      )
+    if (pageNumber > 1) {
+      navigate(`/players/all/${ pageNumber - 1}`)
     }
   }
 
@@ -84,11 +70,14 @@ const PlayerList = () => {
   return (
     <div className="container">
       <div className='table-header'>
-      {showPageButtons ? renderPageButtons() : ''}
+        <div>
+          <button className={pageNumber > 1 ? 'btn btn-primary btn-sm' : 'btn btn-outline-secondary btn-sm'} onClick={handlePreviousPageClick}>Previous Page</button>
+          <button className={pageNumber < 33 ? 'btn btn-primary btn-sm' : 'btn btn-outline-secondary btn-sm'} onClick={handleNextPageClick}>Next Page</button>
+        </div>
       <form onSubmit={handleSearchSubmit}>
         <label>Search</label>
         <input type="text" value={query} onChange={handleSearchChange}></input>
-        <input className='button' type="submit" value="Submit" />
+        <input className='btn btn-primary btn-sm' type="submit" value="Submit" />
       </form>
       <table className='table'>
         <thead>

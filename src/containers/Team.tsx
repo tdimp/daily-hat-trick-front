@@ -21,7 +21,7 @@ const Team = () => {
 
   const navigate = useNavigate();
 
-  const tableColumns = ['Name', 'G', 'A', 'PPP', 'PIM', 'Hits', 'W', 'GAA', 'SV%', 'SO', 'TOI'];
+  const tableColumns = ['Name', 'G', 'A', 'PPP', 'PIM', 'Hits', 'W', 'GAA', 'SV%', 'SO', 'TOI', ''];
   
   // Fetch to teams#show on backend...
   useEffect(() => {
@@ -94,14 +94,14 @@ const Team = () => {
           <div className='team-header'>
             <h1>{team?.name}</h1>
             {team && showEditForm ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : ''}
-            <button className='button' onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
+            <button className='btn btn-primary btn-sm' onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
             
 
-            {!confirmDelete ? <button className='delete-button' onClick={() => setConfirmDelete(true)}>Delete Team</button>
+            {!confirmDelete ? <button className='btn btn-primary btn-sm' onClick={() => setConfirmDelete(true)}>Delete Team</button>
           : 
           <div className='confirm-delete'>
           <p>Are you sure?</p>
-            <button className='button' onClick={() => setConfirmDelete(false)}>Cancel</button> <button className='button-red' onClick={handleDeleteTeam}>Delete</button>
+            <button className='btn btn-primary btn-sm' onClick={() => setConfirmDelete(false)}>Cancel</button> <button className='btn btn-danger btn-sm' onClick={handleDeleteTeam}>Delete</button>
           </div> }
           </div>
         </div>
@@ -116,14 +116,14 @@ const Team = () => {
         <div className='team-header'>
           <h1>{team?.name}</h1>
           {team && showEditForm ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : ''}
-          <button className='button' onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
+          <button className='btn btn-primary btn-sm' onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
           
 
-          {!confirmDelete ? <button className='delete-button' onClick={() => setConfirmDelete(true)}>Delete Team</button>
+          {!confirmDelete ? <button className='btn btn-primary btn-sm' onClick={() => setConfirmDelete(true)}>Delete Team</button>
         : 
         <div className='confirm-delete'>
         <p>Are you sure?</p>
-          <button className='button' onClick={() => setConfirmDelete(false)}>Cancel</button> <button className='button-red' onClick={handleDeleteTeam}>Delete</button>
+          <button className='btn btn-primary btn-sm' onClick={() => setConfirmDelete(false)}>Cancel</button> <button className='btn btn-danger btn-sm' onClick={handleDeleteTeam}>Delete</button>
         </div> }
         </div>
         
@@ -148,7 +148,7 @@ const Team = () => {
                 <td>-</td>
                 <td>-</td>
                 <td>{skater.skater_stat.time_on_ice_per_game}</td>
-                <td><button className='button-red' value={skater.id} onClick={handleDrop}>Drop</button></td>
+                <td><button className='btn btn-danger btn-sm' value={skater.id} onClick={handleDrop}>Drop</button></td>
               </tr>
             )
           })}
@@ -167,7 +167,7 @@ const Team = () => {
               <td>{goalie.goalie_stat.save_percentage.toFixed(3)}</td>
               <td>{goalie.goalie_stat.shutouts}</td>
               <td>{goalie.goalie_stat.time_on_ice}</td>
-              <td><button className='button-red' value={goalie.id} onClick={handleDrop}>Drop</button></td>
+              <td><button className='btn btn-danger btn-sm' value={goalie.id} onClick={handleDrop}>Drop</button></td>
             </tr>
           )
         })}
@@ -186,7 +186,7 @@ const Team = () => {
               <td>-</td>
               <td>-</td>
               <td>-</td>
-              <td><button className='button-red' value={player.id} onClick={handleDrop}>Drop</button></td>
+              <td><button className='btn btn-danger btn-sm' value={player.id} onClick={handleDrop}>Drop</button></td>
             </tr>
           )
         })}

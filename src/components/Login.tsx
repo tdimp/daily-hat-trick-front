@@ -52,10 +52,10 @@ const Login = () => {
           <input type="text" required={true} value={email} onChange={(e) => setEmail(e.target.value)} />
           <label>Password*</label>
           <input type="password" required={true} value={password} onChange={(e) => setPassword(e.target.value)} />
-          <input type="submit" value="Login!" />
+          <input className='btn btn-primary btn-sm' type="submit" value="Login!" />
         </form>
         <>Don't have an account?</>
-        <button className='button' onClick={handleHasAccountClick}>Sign Up</button>
+        <button className="btn btn-primary btn-sm" onClick={handleHasAccountClick}>Sign Up</button>
       </div>
     )
   } else if(!user && !hasAccount) {

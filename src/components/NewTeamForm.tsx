@@ -28,8 +28,9 @@ const NewTeamForm = ({ handleCreate}: Props) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(teamData),
+      
     });
-
+    console.log(response)
     const data = await response.json();
     if (response.ok) {
       handleCreate(data);
@@ -53,7 +54,7 @@ const NewTeamForm = ({ handleCreate}: Props) => {
         <label className='notification'>Create New Team<br />
           <input type='text' required={true} value={teamName} onChange={(e) => setTeamName(e.target.value)} />
         </label>
-        <input className='button' type='submit' value='Create Team' />
+        <input className='btn btn-primary btn-sm' type='submit' value='Create Team' />
       </form>
     </div>
   )

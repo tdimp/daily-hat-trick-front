@@ -54,11 +54,11 @@ export const AddPlayer = ({trigger, setTrigger}: PopupProps) => {
               <option key={team.id} value={team.id}>{team.name}</option>
             ))}
           </select>
-          <input type="submit" value="Add Player" />
+          <input className='btn btn-primary btn-sm' type="submit" value="Add Player" />
         </form> : 
         <h3>You don't have any teams!</h3>
        }
-        <button className='button' onClick={() => setTrigger(!trigger)}>Cancel</button>
+        <button className='btn btn-primary btn-sm' onClick={() => setTrigger(!trigger)}>Cancel</button>
       </div>
     </div>
   ) : <></>;

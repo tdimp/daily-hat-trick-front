@@ -10,19 +10,25 @@ const Home = () => {
     .then(data => setGames(data.dates[0].games))
   }, [])
 
-  console.log(games[0])
-
   return (
     <div className='container'>
+      <h1>Today's Games</h1>
+      
       {games.map((game: any) => {
         const awayTeam = game.teams.away.team
         const homeTeam = game.teams.home.team
 
         return (
-          <div key={game.id}>
-            <NhlTeamCard key={awayTeam.name} team={awayTeam} />            
-            <h1>@</h1>
-            <NhlTeamCard key={homeTeam.name} team={homeTeam} />
+          <div className='container my-5' key={game.id}>
+            <div className='row border align-items-center'>
+              <div className='col-md align-items-center'>
+                <NhlTeamCard key={awayTeam.name} team={awayTeam} />
+              </div>
+              <div className='col align-self-center text-center'><h1>@</h1></div>
+              <div className='col-md align-items-center'>
+                <NhlTeamCard key={homeTeam.name} team={homeTeam} />
+              </div>
+            </div>
           </div>
         )
       })}

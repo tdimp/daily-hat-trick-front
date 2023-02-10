@@ -42,16 +42,16 @@ const NavBar = () => {
         <h1 className='header-text'>Daily Hat Trick</h1>
         <Link to='/'>Home</Link>
         <Link to='/teams'>Teams</Link>
-        <Link to='/players/page/1'>Players</Link>
+        <Link to='/players/all/1'>Players</Link>
         <Link to='/nhlteams'>NHL Teams</Link>
-        <button className='button-red' onClick={handleLogoutClick}>Logout</button>
+        <button className='btn btn-primary btn-sm' onClick={handleLogoutClick}>Logout</button>
       </div>
     )
   } else {
     return (
       <div className='navbar'>
         <Login /> <br />
-        <Link to='/players/page/1'>Players</Link>
+        <Link to='/players/all/1'>Players</Link>
         <Link to='/nhlteams'>NHL Teams</Link>
       </div>
     )

@@ -8,9 +8,8 @@ const NhlTeamCard = ({ team }: NhlTeamCardInterface) => {
   const teamName = team.name.split(' ').join('');
 
   return (
-    <div className='nhl-card' onClick={() => navigate(`/nhlteams/${team.id}`)}>
-      <img className='nhl-logo' src={require(`../logos/${teamName}.png`)} alt={`NHL team logo for ${team.name}`} />
-      <p className='nhl-card-text'>{team.name}</p>
+    <div className='col border align-items-center' onClick={() => navigate(`/nhlteams/${team.id}`)}>
+      <img className='' src={require(`../logos/${teamName}.png`)} alt={`NHL team logo for ${team.name}`} />
     </div>
   )
 }
