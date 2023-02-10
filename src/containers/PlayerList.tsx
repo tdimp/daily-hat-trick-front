@@ -7,7 +7,6 @@ const PlayerList = () => {
 
   const [players, setPlayers] = useState([]);
   const [query, setQuery] = useState("");
-  const [showPageButtons, setShowPageButtons] = useState(true);
   const [errors, setErrors] = useState('');
 
   const { page }: any = useParams();
@@ -45,7 +44,6 @@ const PlayerList = () => {
   const handleSearchChange = (e: React.FormEvent) => {
     const target = e.target as HTMLFormElement;
     setQuery(target.value);
-    query ? setShowPageButtons(false) : setShowPageButtons(true);
   }
 
   const handleSearchSubmit = (e: React.FormEvent) => {
