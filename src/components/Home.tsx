@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { TeamInterface } from '../@types/TeamInterface';
 import NhlTeamCard from './NhlTeamCard';
 
 const Home = () => {
@@ -11,7 +10,7 @@ const Home = () => {
     .then(data => setGames(data.dates[0].games))
   }, [])
 
-  
+  console.log(games[0])
 
   return (
     <div className='container'>
