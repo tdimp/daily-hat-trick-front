@@ -89,7 +89,22 @@ const Team = () => {
 
   if (!players.length) {
     return (
-      <div>
+      <div className='container'>
+        <div className='table-container'>
+          <div className='team-header'>
+            <h1>{team?.name}</h1>
+            {team && showEditForm ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : ''}
+            <button className='button' onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
+            
+
+            {!confirmDelete ? <button className='delete-button' onClick={() => setConfirmDelete(true)}>Delete Team</button>
+          : 
+          <div className='confirm-delete'>
+          <p>Are you sure?</p>
+            <button className='button' onClick={() => setConfirmDelete(false)}>Cancel</button> <button className='button-red' onClick={handleDeleteTeam}>Delete</button>
+          </div> }
+          </div>
+        </div>
         <p className='notification'>This team does not have any players!</p>
         <Link to='/players/page/1'>View Players</Link>
       </div>
