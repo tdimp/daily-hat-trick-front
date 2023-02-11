@@ -53,6 +53,11 @@ const Team = () => {
 
   const handleUpdate = (newTeam: TeamInterface) => {
     setTeam(newTeam);
+    if (teams) {
+     // const newTeams = Object.assign(teams, newTeam);
+      const filteredTeams = teams.filter((t) => t.id !== newTeam.id)
+      setTeams([...filteredTeams, newTeam]);
+    }
     setShowEditForm(false);
   }
   
@@ -106,7 +111,7 @@ const Team = () => {
           </div>
         </div>
         <p className='notification'>This team does not have any players!</p>
-        <Link to='/players/page/1'>View Players</Link>
+        <Link to='/players/all/1'>View Players</Link>
       </div>
     )
   }
