@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, MouseEvent } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { PlayerInterface } from '../@types/PlayerInterface';
 import { TeamContext } from '../context/TeamContext';
@@ -6,6 +6,7 @@ import EditTeamForm from '../components/EditTeamForm';
 import { TeamInterface } from '../@types/TeamInterface';
 import ErrorPage from '../components/ErrorPage';
 import { UserContext } from '../context/UserContext';
+import Modal from '../components/Modal';
 
 
 const Team = () => {
@@ -18,6 +19,7 @@ const Team = () => {
   const [errors, setErrors] = useState('');
   const [showEditForm, setShowEditForm] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [dropped, setDropped] = useState(0);
 
   const navigate = useNavigate();
 
@@ -61,8 +63,7 @@ const Team = () => {
     setShowEditForm(false);
   }
   
-  const handleDrop = async (e: MouseEvent<HTMLButtonElement>) => {
-    const droppedId = parseInt(e.currentTarget.value);
+  const handleDrop = async (droppedId: number) => {
     const filteredPlayers = players.filter((player: PlayerInterface) => player.id !== droppedId)
     
     const response = await fetch(`/teams/${id}/drop_player`, {
@@ -75,7 +76,6 @@ const Team = () => {
 
     const data = await response.json();
     if (response.ok) {
-      alert(`Player dropped!`);
       setPlayers(filteredPlayers);
     } else {
       setErrors(data.error);
@@ -115,8 +115,11 @@ const Team = () => {
       </div>
     )
   }
+
+ 
     return (
       <div className='container'>
+        <Modal handleDrop={handleDrop} id={dropped} />
         <div className='table-container'>
         <div className='team-header'>
           <h1>{team?.name}</h1>
@@ -153,7 +156,7 @@ const Team = () => {
                 <td>-</td>
                 <td>-</td>
                 <td>{skater.skater_stat.time_on_ice_per_game}</td>
-                <td><button className='btn btn-danger btn-sm' value={skater.id} onClick={handleDrop}>Drop</button></td>
+                <td><button className='btn btn-danger btn-sm' data-bs-toggle="modal" data-bs-target="#confirmDropModal" value={skater.id} onClick={() => setDropped(skater.id)}>Drop</button></td>
               </tr>
             )
           })}
@@ -172,7 +175,7 @@ const Team = () => {
               <td>{goalie.goalie_stat.save_percentage.toFixed(3)}</td>
               <td>{goalie.goalie_stat.shutouts}</td>
               <td>{goalie.goalie_stat.time_on_ice}</td>
-              <td><button className='btn btn-danger btn-sm' value={goalie.id} onClick={handleDrop}>Drop</button></td>
+              <td><button className='btn btn-danger btn-sm' data-bs-toggle="modal" data-bs-target="#confirmDropModal" value={goalie.id} onClick={() => setDropped(goalie.id)}>Drop</button></td>
             </tr>
           )
         })}
@@ -191,7 +194,7 @@ const Team = () => {
               <td>-</td>
               <td>-</td>
               <td>-</td>
-              <td><button className='btn btn-danger btn-sm' value={player.id} onClick={handleDrop}>Drop</button></td>
+              <td><button className='btn btn-danger btn-sm' data-bs-toggle="modal" data-bs-target="#confirmDropModal" value={player.id} onClick={() => setDropped(player.id)}>Drop</button></td>
             </tr>
           )
         })}

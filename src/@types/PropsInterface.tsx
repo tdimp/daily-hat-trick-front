@@ -21,3 +21,8 @@ export interface PlayerPropsInterface {
 export interface NhlTeamCardInterface {
   team: NhlTeamInterface;
 }
+
+export interface modalProps {
+  handleDrop: any;
+  id: number;
+}
