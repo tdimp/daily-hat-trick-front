@@ -37,10 +37,15 @@ if (errors) {
   return (
     <div className='container'>
       <div className='row'>
-        {teams?.map((team) => <NhlTeamCard key={team.id} team={team} />)}
+        {teams?.map((team) => {
+          return (
+            <div className='col' key={team.id}>
+              <NhlTeamCard key={team.id} team={team} />
+            </div>
+          )
+          })}
       </div>
     </div>
-    
   )
 }
 
