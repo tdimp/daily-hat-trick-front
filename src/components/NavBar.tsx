@@ -61,10 +61,19 @@ const NavBar = () => {
     )
   } else {
     return (
-      <div className='navbar'>
-        <Login /> <br />
-        <Link to='/players/all/1'>Players</Link>
-        <Link to='/nhlteams'>NHL Teams</Link>
+      <div className='navbar-expand{-sm|-md|-lg|-xl}'>
+        <div className='navbar'>
+        <h1 className='header-text'>Daily Hat Trick</h1>
+        <nav>
+          <Login />
+        </nav>
+        <nav>
+          <Link to='/players/all/1'>Players</Link>
+        </nav>
+        <nav>
+          <Link to='/nhlteams'>NHL Teams</Link>
+        </nav>
+      </div>
       </div>
     )
   }
