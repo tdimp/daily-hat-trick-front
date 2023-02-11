@@ -20,7 +20,7 @@ const Home = () => {
 
         return (
           <div className='container my-5' key={game.id}>
-            <div className='row border align-items-center'>
+            <div className='row align-items-center'>
               <div className='col-md align-items-center'>
                 <NhlTeamCard key={awayTeam.name} team={awayTeam} />
               </div>
