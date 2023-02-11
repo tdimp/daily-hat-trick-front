@@ -38,13 +38,25 @@ const NavBar = () => {
 
   if(user) {
     return (
-      <div className='navbar'>
-        <h1 className='header-text'>Daily Hat Trick</h1>
-        <Link to='/'>Home</Link>
-        <Link to='/teams'>Teams</Link>
-        <Link to='/players/all/1'>Players</Link>
-        <Link to='/nhlteams'>NHL Teams</Link>
-        <button className='btn btn-primary btn-sm' onClick={handleLogoutClick}>Logout</button>
+      <div className='navbar-expand{-sm|-md|-lg|-xl}'>
+        <div className='navbar'>
+          <h1 className='header-text'>Daily Hat Trick</h1>
+          <nav>
+            <Link to='/'>Home</Link>
+          </nav>
+          <nav>
+            <Link to='/teams'>Teams</Link>
+          </nav>
+          <nav>
+            <Link to='/players/all/1'>Players</Link>
+          </nav>
+          <nav>
+            <Link to='/nhlteams'>NHL Teams</Link>
+          </nav>
+          <nav>
+            <button className='btn btn-primary btn-sm' onClick={handleLogoutClick}>Logout</button>
+          </nav>
+        </div>
       </div>
     )
   } else {
