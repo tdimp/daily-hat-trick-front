@@ -65,13 +65,16 @@ const NavBar = () => {
         <div className='navbar'>
         <h1 className='header-text'>Daily Hat Trick</h1>
         <nav>
-          <Login />
+          <Link to='/'>Home</Link>
         </nav>
         <nav>
           <Link to='/players/all/1'>Players</Link>
         </nav>
         <nav>
           <Link to='/nhlteams'>NHL Teams</Link>
+        </nav>
+        <nav>
+          <Login />
         </nav>
       </div>
       </div>
