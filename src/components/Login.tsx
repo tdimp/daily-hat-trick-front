@@ -46,17 +46,15 @@ const Login = () => {
 
   if(!user && hasAccount) {
     return (
-      <div className='login'>
-        <form onSubmit={handleUserLogin}>
-          <label>Email*</label>
-          <input type="text" required={true} value={email} onChange={(e) => setEmail(e.target.value)} />
-          <label>Password*</label>
-          <input type="password" required={true} value={password} onChange={(e) => setPassword(e.target.value)} />
-          <input className='btn btn-primary btn-sm' type="submit" value="Login!" />
-        </form>
+      <form onSubmit={handleUserLogin}>
+        <label>Email*</label>
+        <input type="text" required={true} value={email} onChange={(e) => setEmail(e.target.value)} />
+        <label>Password*</label>
+        <input type="password" required={true} value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input className='btn btn-primary btn-sm' type="submit" value="Login!" />
         <>Don't have an account?</>
         <button className="btn btn-primary btn-sm" onClick={handleHasAccountClick}>Sign Up</button>
-      </div>
+      </form>
     )
   } else if(!user && !hasAccount) {
     return <SignUp />
