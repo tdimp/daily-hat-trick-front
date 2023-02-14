@@ -1,20 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import NhlTeamCard from './NhlTeamCard';
+import ErrorPage from './ErrorPage';
 
 const Home = () => {
   const [games, setGames] = useState([]);
+  const [errors, setErrors] = useState('');
 
   useEffect(() => {
     fetch('https://statsapi.web.nhl.com/api/v1/schedule')
-    .then(res => res.json())
-    .then(data => setGames(data.dates[0].games))
-  }, [])
+    .then(res => {
+      if (res.ok) {
+        res.json()
+        .then(data => setGames(data.dates[0].games));
+      } else {
+        setErrors(res.statusText);
+      };
+  })}, []);
+
+  if (errors) {
+    return <ErrorPage message={errors} />
+  }
 
   return (
     <div className='container'>
       <h1>Today's Games</h1>
       
-      {games.map((game: any) => {
+      {games.length ? games.map((game: any) => {
         const awayTeam = game.teams.away.team
         const homeTeam = game.teams.home.team
 
@@ -31,7 +42,8 @@ const Home = () => {
             </div>
           </div>
         )
-      })}
+      })
+      : <ErrorPage message={"Today's matchups are currently unavailable. Try again later."} />} 
     </div>
   )
 }
