@@ -101,7 +101,6 @@ const Team = () => {
             {team && showEditForm ? <EditTeamForm team={team} handleUpdate={handleUpdate}></EditTeamForm> : ''}
             <button className='btn btn-primary btn-sm' onClick={() => setShowEditForm(!showEditForm)}>{showEditForm ? 'Cancel' : 'Edit Team Name'}</button>          
             
-
             {!confirmDelete ? <button className='btn btn-primary btn-sm' onClick={() => setConfirmDelete(true)}>Delete Team</button>
           : 
           <div className='confirm-delete'>
@@ -115,7 +114,6 @@ const Team = () => {
       </div>
     )
   }
-
  
     return (
       <div className='container'>
