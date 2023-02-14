@@ -1,4 +1,4 @@
-# Daily Hat Trick Front End (Back end repo [here]: (https://github.com/tdimp/phase5-backend))s
+# Daily Hat Trick Front End (Back end repo [here](https://github.com/tdimp/phase5-backend))
 
 Daily Hat Trick is a full-stack hockey stats tracking app where users can create teams of NHL players and track basic and advanced statistics for each player. Users can browse all NHL players by last name, or view each NHL team's roster. Rosters and statistics are updated multiple times per day, so users can be assured that the statistics they are seeing are up-to-date. The app does not currently support live stats updates, so users will have to check the morning following NHL games to see those stats added to the players' totals.
 
