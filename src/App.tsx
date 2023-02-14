@@ -14,8 +14,6 @@ import Home from './components/Home';
 
 const App = () => {
 
-  // Need to think of component hierarchy and state management. Redux or useContext?
-
   return (
     <div className='App'>
       <Router>
@@ -34,7 +32,6 @@ const App = () => {
         </TeamsProvider>
         </UserProvider>
       </Router>
-      
     </div>
   );
 }
