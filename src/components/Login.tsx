@@ -44,7 +44,7 @@ const Login = () => {
     return <ErrorPage message={errors} />
   }
 
-  if(!user && hasAccount) {
+  if (!user && hasAccount) {
     return (
       <form onSubmit={handleUserLogin}>
         <label>Email*</label>
@@ -56,7 +56,7 @@ const Login = () => {
         <button className="btn btn-primary btn-sm" onClick={handleHasAccountClick}>Sign Up</button>
       </form>
     )
-  } else if(!user && !hasAccount) {
+  } else if (!user && !hasAccount) {
     return <SignUp />
   } else {
     return null;

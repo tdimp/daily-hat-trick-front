@@ -36,7 +36,7 @@ const NavBar = () => {
     return <ErrorPage message={errors} />
   }
 
-  if(user) {
+  if (user) {
     return (
       <div className='navbar-expand{-sm|-md|-lg|-xl}'>
         <div className='navbar'>

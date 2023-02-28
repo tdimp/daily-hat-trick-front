@@ -11,7 +11,7 @@ export const UserProvider = ({ children }: PropsInterface) => {
   useEffect(() => {
     fetch('/auth')
       .then(res => {
-        if(res.ok){
+        if (res.ok){
           res.json().then(user => setUser({userId: user.id, username: user.username}))
         }
       })

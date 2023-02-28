@@ -120,7 +120,6 @@ const PlayerList = () => {
       </table>
       </div>
     </div>
-    
   )
 }
 

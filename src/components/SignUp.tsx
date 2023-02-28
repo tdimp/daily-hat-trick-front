@@ -58,7 +58,7 @@ const SignUp = () => {
     return <ErrorPage message={errors} />
   }
 
-  if(!user && !hasAccount) {
+  if (!user && !hasAccount) {
     return (
       <form onSubmit={handleUserSignUp}>
         <label>Email*</label>
@@ -73,7 +73,7 @@ const SignUp = () => {
       </form>
         
     )
-  } else if(!user && hasAccount) {
+  } else if (!user && hasAccount) {
     return <Login />
   } else {
     return null;

@@ -16,7 +16,7 @@ const TeamList = () => {
     }
   }
 
-  if(!user) {
+  if (!user) {
     return <h3 className='need-auth'>You must be logged in to view this page.</h3>
   }
 

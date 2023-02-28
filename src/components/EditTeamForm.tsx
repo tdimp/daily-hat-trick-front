@@ -36,11 +36,11 @@ const EditTeamForm = ({team, handleUpdate}: Props) => {
     }
   }
 
-  if(!user) {
+  if (!user) {
     return <h3 className='need-auth'>You must be logged in to view this page.</h3>
   }
 
-  if(errors) {
+  if (errors) {
     return <ErrorPage message={errors} />
   }
 
