@@ -5,6 +5,7 @@ import { UserContext } from '../context/UserContext';
 import {AddPlayer} from './AddPlayer';
 import ErrorPage from './ErrorPage';
 import PlayerCard from './PlayerCard';
+import StatsOutlook from './StatsOutlook';
 
 
 const Player = () => {
@@ -42,6 +43,7 @@ const Player = () => {
           <AddPlayer trigger={trigger} setTrigger={setTrigger} />
         </div>
         <PlayerCard player={player} />
+        <StatsOutlook player={player} />
       </div>  
     )
   } else {
