@@ -41,7 +41,7 @@ const StatsOutlook = ({ player }: PlayerPropsInterface) => {
     }
 
   return (
-    <div>{remainingGames}</div>
+    <div>Games Remaining This Week: {remainingGames}</div>
   )
 }
 
