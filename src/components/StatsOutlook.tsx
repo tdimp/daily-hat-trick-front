@@ -15,6 +15,7 @@ const StatsOutlook = ({ player }: PlayerPropsInterface) => {
 
   useEffect(() => {
     if (player.nhl_team) {
+      console.log(url)
       fetch(url)
       .then(res => res.json())
       .then(data => setRemainingGames(data.totalGames))
@@ -29,11 +30,11 @@ const StatsOutlook = ({ player }: PlayerPropsInterface) => {
       endDate = `${offsetDate.getFullYear()}-${('0' + (offsetDate.getMonth() + 1)).toString().slice(-2)}-${'0' + offsetDate.getDate().toString().slice(-2)}`
       url = new URL(`https://statsapi.web.nhl.com/api/v1/schedule?teamId=${player.nhl_team?.id}&startDate=${startDate}&endDate=${endDate}`)
     } else {
-     for (let i = 0; i < 6; i++) {
+     for (let i = 2; i <= 6; i++) {
       if (currentDay - i === 1) {
         offsetDate = new Date(new Date().setDate(new Date().getDate() - i))
         let newDate = new Date(new Date().setDate(offsetDate.getDate() + 6))
-        startDate = `${offsetDate.getFullYear()}-${('0' + (offsetDate.getMonth() + 1)).toString().slice(-2)}-${'0' + offsetDate.getDate().toString().slice(-2)}`
+        startDate = `${currentDate.getFullYear()}-${('0' + (currentDate.getMonth() + 1)).toString().slice(-2)}-${'0' + currentDate.getDate().toString().slice(-2)}`
         endDate = `${newDate.getFullYear()}-${('0' + (newDate.getMonth() + 1)).toString().slice(-2)}-${newDate.getDate().toString().slice(-2)}`
         url = new URL(`https://statsapi.web.nhl.com/api/v1/schedule?teamId=${player.nhl_team?.id}&startDate=${startDate}&endDate=${endDate}`)
       }
