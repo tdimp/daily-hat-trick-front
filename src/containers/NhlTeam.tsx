@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { NhlTeamInterface } from '../@types/NhlTeamInterface';
 import ErrorPage from '../components/ErrorPage';
+import StatsOutlook from '../components/StatsOutlook';
 
 const NhlTeam = () => {
 
@@ -41,7 +42,7 @@ const NhlTeam = () => {
     <>
     <p className='title-text'>{team?.name}</p>
     <div className='container'>
-      
+      <StatsOutlook nhlTeamId={id} />
       <table className='table'>
         <thead>
           <tr>
