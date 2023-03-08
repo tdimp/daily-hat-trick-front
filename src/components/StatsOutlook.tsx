@@ -15,7 +15,6 @@ const StatsOutlook = ({ player }: PlayerPropsInterface) => {
 
   useEffect(() => {
     if (player.nhl_team) {
-      console.log(url)
       fetch(url)
       .then(res => res.json())
       .then(data => setRemainingGames(data.totalGames))
