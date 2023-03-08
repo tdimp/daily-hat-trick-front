@@ -43,7 +43,7 @@ const Player = () => {
           <AddPlayer trigger={trigger} setTrigger={setTrigger} />
         </div>
         <PlayerCard player={player} />
-        <StatsOutlook player={player} />
+        <StatsOutlook nhlTeamId={player.nhl_team?.id} />
       </div>  
     )
   } else {
