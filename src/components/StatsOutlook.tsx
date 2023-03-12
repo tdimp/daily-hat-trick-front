@@ -24,16 +24,16 @@ const StatsOutlook = ({ nhlTeamId }: any) => {
       url = new URL(`https://statsapi.web.nhl.com/api/v1/schedule?teamId=${nhlTeamId}`)
     } else if (currentDay === 1) {
       offsetDate = new Date(new Date().setDate(new Date().getDate() + 6))
-      startDate = `${currentDate.getFullYear()}-${('0' + (currentDate.getMonth() + 1)).toString().slice(-2)}-${'0' + currentDate.getDate().toString().slice(-2)}`
-      endDate = `${offsetDate.getFullYear()}-${('0' + (offsetDate.getMonth() + 1)).toString().slice(-2)}-${'0' + offsetDate.getDate().toString().slice(-2)}`
+      startDate = `${currentDate.getFullYear()}-${('0' + (currentDate.getMonth() + 1)).toString().slice(-2)}-${('0' + currentDate.getDate()).toString().slice(-2)}`
+      endDate = `${offsetDate.getFullYear()}-${('0' + (offsetDate.getMonth() + 1)).toString().slice(-2)}-${('0' + offsetDate.getDate()).toString().slice(-2)}`
       url = new URL(`https://statsapi.web.nhl.com/api/v1/schedule?teamId=${nhlTeamId}&startDate=${startDate}&endDate=${endDate}`)
     } else {
      for (let i = 2; i <= 6; i++) {
       if (currentDay - i === 1) {
         offsetDate = new Date(new Date().setDate(new Date().getDate() - i))
         let newDate = new Date(new Date().setDate(offsetDate.getDate() + 6))
-        startDate = `${currentDate.getFullYear()}-${('0' + (currentDate.getMonth() + 1)).toString().slice(-2)}-${'0' + currentDate.getDate().toString().slice(-2)}`
-        endDate = `${newDate.getFullYear()}-${('0' + (newDate.getMonth() + 1)).toString().slice(-2)}-${newDate.getDate().toString().slice(-2)}`
+        startDate = `${currentDate.getFullYear()}-${('0' + (currentDate.getMonth() + 1)).toString().slice(-2)}-${('0' + currentDate.getDate()).toString().slice(-2)}`
+        endDate = `${newDate.getFullYear()}-${('0' + (newDate.getMonth() + 1)).toString().slice(-2)}-${('0' + newDate.getDate()).toString().slice(-2)}`
         url = new URL(`https://statsapi.web.nhl.com/api/v1/schedule?teamId=${nhlTeamId}&startDate=${startDate}&endDate=${endDate}`)
       }
      }  
