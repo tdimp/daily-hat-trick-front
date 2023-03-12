@@ -20,6 +20,11 @@ const StatsOutlook = ({ nhlTeamId }: any) => {
     }
   });
 
+  /* 
+    The startDate and endDate string conversions can be written as templates instead of calling .toString() on them and concatenating.
+    Example: `0${offsetDate.getDate()`.slice(-2)}` instead of ('0' + offsetDate.getDate()).toString().slice(-2)
+  */
+
     if (currentDay === 0) {
       url = new URL(`https://statsapi.web.nhl.com/api/v1/schedule?teamId=${nhlTeamId}`)
     } else if (currentDay === 1) {
