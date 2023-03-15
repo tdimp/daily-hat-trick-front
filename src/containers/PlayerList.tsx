@@ -86,7 +86,7 @@ const PlayerList = () => {
         <tbody>
           {players.map((player: PlayerInterface) => (
             <tr key={player.id}>
-              <td onClick={() => navigate(`/players/${player.id}`)}>{`${player.full_name}, ${player.position}`}</td>
+              <td><a href={`/players/${player.id}`}>{`${player.full_name}, ${player.position}`}</a></td>
               { player.position !== 'G' ? 
                 <>
                   <td>{player.skater_stat?.goals}</td>

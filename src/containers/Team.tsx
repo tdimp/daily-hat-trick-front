@@ -143,7 +143,7 @@ const Team = () => {
           {skaters?.map((skater) => {
             return (
               <tr key={skater.id}>
-                <td onClick={() => navigate(`/players/${skater.id}`)}>{skater.full_name}, {skater.position}, #{skater.jersey_number}</td>
+                <td><a href={`/players/${skater.id}`}>{`${skater.full_name}, ${skater.position}, #${skater.jersey_number}`}</a></td>
                 <td>{skater.skater_stat.goals}</td>
                 <td>{skater.skater_stat.assists}</td>
                 <td>{skater.skater_stat.power_play_points}</td>
@@ -162,7 +162,7 @@ const Team = () => {
           {goalies?.map((goalie) => {
           return (
             <tr key={goalie.id}>
-              <td onClick={() => {navigate(`/players/${goalie.id}`)}}>{goalie.full_name}, {goalie.position}, #{goalie.jersey_number}</td>
+              <td><a href={`/players/${goalie.id}`}>{`${goalie.full_name}, ${goalie.position}, #${goalie.jersey_number}`}</a></td>
               <td>-</td>
               <td>-</td>
               <td>-</td>
@@ -181,7 +181,7 @@ const Team = () => {
         {inactivePlayers?.map((player) => {
           return (
             <tr key={player.id}>
-              <td onClick={() => navigate(`/players/${player.id}`)}>{player.full_name}, {player.position}, #{player.jersey_number}</td>
+              <td><a href={`/players/${player.id}`}>{`${player.full_name}, ${player.position}, #${player.jersey_number}`}</a></td>
               <td>-</td>
               <td>-</td>
               <td>-</td>
