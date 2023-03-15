@@ -74,7 +74,7 @@ const PlayerCard = ({player}: PlayerPropsInterface) => {
     return (
       <div className='goalie-card'>
         <div>
-          <table>
+          <table className='table'>
             <thead>
               <tr>
                 {simpleColumns.map((column) => <th key={column}>{column}</th>)}
@@ -93,7 +93,7 @@ const PlayerCard = ({player}: PlayerPropsInterface) => {
             </tbody>
           </table>
           <p>Advanced Stats</p>
-          <table>
+          <table className='table'>
             <thead>
               <tr>
                 {advancedColumns.map((column) => <th key={column}>{column}</th>)}
