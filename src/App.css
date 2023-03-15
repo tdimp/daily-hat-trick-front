@@ -5,3 +5,7 @@
   background-size: cover;
   background-attachment: fixed;
 } */
+
+.card-img-top {
+  cursor: pointer;
+}
