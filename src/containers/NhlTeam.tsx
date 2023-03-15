@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { NhlTeamInterface } from '../@types/NhlTeamInterface';
 import ErrorPage from '../components/ErrorPage';
 import StatsOutlook from '../components/StatsOutlook';
@@ -7,7 +7,6 @@ import StatsOutlook from '../components/StatsOutlook';
 const NhlTeam = () => {
 
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const [team, setTeam] = useState<NhlTeamInterface | null>({} as NhlTeamInterface);
   const [errors, setErrors] = useState('');
@@ -53,7 +52,7 @@ const NhlTeam = () => {
         {skaters?.map((skater) => {
           return (
             <tr key={skater.id}>
-              <td onClick={() => navigate(`/players/${skater.id}`)}>{skater.full_name}, {skater.position}, #{skater.jersey_number}</td>
+              <td><a href={`/players/${skater.id}`}>{`${skater.full_name}, ${skater.position}, #${skater.jersey_number}`}</a></td>
               <td>{skater.skater_stat.goals}</td>
               <td>{skater.skater_stat.assists}</td>
               <td>{skater.skater_stat.power_play_points}</td>
@@ -71,7 +70,7 @@ const NhlTeam = () => {
         {goalies?.map((goalie) => {
           return (
             <tr key={goalie.id}>
-              <td onClick={() => {navigate(`/players/${goalie.id}`)}}>{goalie.full_name}, {goalie.position}, #{goalie.jersey_number}</td>
+              <td><a href={`/players/${goalie.id}`}>{`${goalie.full_name}, ${goalie.position}, #${goalie.jersey_number}`}</a></td>
               <td>-</td>
               <td>-</td>
               <td>-</td>
@@ -89,7 +88,7 @@ const NhlTeam = () => {
         {inactivePlayers?.map((player) => {
           return (
             <tr key={player.id}>
-              <td onClick={() => navigate(`/players/${player.id}`)}>{player.full_name}, {player.position}, #{player.jersey_number}</td>
+              <td><a href={`/players/${player.id}`}>{`${player.full_name}, ${player.position}, #${player.jersey_number}`}</a></td>
               <td>-</td>
               <td>-</td>
               <td>-</td>
