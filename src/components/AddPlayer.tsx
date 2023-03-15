@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { PopupProps } from '../@types/PropsInterface';
 import { TeamContext } from '../context/TeamContext';
@@ -9,28 +9,34 @@ export const AddPlayer = ({trigger, setTrigger}: PopupProps) => {
   const { teams } = useContext(TeamContext);
   const { id } = useParams();
 
-  const [selectValue, setSelectValue] = useState(teams && teams.length ? teams[0].id : undefined);
+  const [selectValue, setSelectValue] = useState(0);
   const [errors, setErrors] = useState('');
 
-  const onSubmit = async (e: React.SyntheticEvent) => {
+  useEffect(() => {
+    if (teams) {
+      setSelectValue(teams[0].id);
+    }
+  }, [teams])
+
+  async function onSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
 
-    const addedId = id ? parseInt(id) : null
-    
+    const addedId = id ? parseInt(id) : null;
+
     const response = await fetch(`/teams/${selectValue}/add_player`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({addedId})
+      body: JSON.stringify({ addedId })
     });
 
     await response.json();
     if (response.ok) {
-      setErrors(`Player added!`)
-      setTimeout(() => setErrors(''), 2000)
+      setErrors(`Player added!`);
+      setTimeout(() => setErrors(''), 2000);
     } else {
-      setErrors(response.statusText)
+      setErrors(response.statusText);
     }
   }
 
