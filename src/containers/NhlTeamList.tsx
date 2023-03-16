@@ -40,7 +40,7 @@ if (errors) {
         {teams?.map((team) => {
           return (
             <div className='col' key={team.id}>
-              <NhlTeamCard key={team.id} team={team} />
+              <NhlTeamCard team={team} />
             </div>
           )
           })}
