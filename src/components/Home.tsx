@@ -28,16 +28,16 @@ const Home = () => {
       {games.length ? games.map((game: any) => {
         const awayTeam = game.teams.away.team
         const homeTeam = game.teams.home.team
-
+        
         return (
-          <div className='container my-5' key={game.id}>
+          <div className='container my-5' key={game.gamePk}>
             <div className='row align-items-center'>
               <div className='col-md align-items-center'>
-                <NhlTeamCard key={awayTeam.name} team={awayTeam} />
+                <NhlTeamCard team={awayTeam} />
               </div>
               <div className='col align-self-center text-center'><h1>@</h1></div>
               <div className='col-md align-items-center'>
-                <NhlTeamCard key={homeTeam.name} team={homeTeam} />
+                <NhlTeamCard team={homeTeam} />
               </div>
             </div>
           </div>
