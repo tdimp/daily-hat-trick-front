@@ -27,3 +27,5 @@ export const TeamsProvider = ({ children }: PropsInterface) => {
     </TeamContext.Provider>
   )
 }
+
+// Research abstraction of data layer
