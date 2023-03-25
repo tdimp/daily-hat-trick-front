@@ -5,10 +5,6 @@ export interface PropsInterface {
   children: React.ReactNode;
 }
 
-export interface ErrorProps {
-  message: string;
-}
-
 export interface PlayerPropsInterface {
   player: PlayerInterface;
 }
