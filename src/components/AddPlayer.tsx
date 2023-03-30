@@ -1,8 +1,12 @@
 import React, { useState, useContext, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import { PopupProps } from '../@types/PropsInterface';
 import { TeamContext } from '../context/TeamContext';
 import ErrorPage from './ErrorPage';
+
+interface PopupProps {
+  trigger: boolean;
+  setTrigger: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 export const AddPlayer = ({trigger, setTrigger}: PopupProps) => {
 

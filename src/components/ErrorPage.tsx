@@ -1,5 +1,8 @@
 import React from 'react';
-import { ErrorProps } from '../@types/PropsInterface';
+
+interface ErrorProps {
+  message: string;
+}
 
 const ErrorPage = ({ message }: ErrorProps) => {
   return (
