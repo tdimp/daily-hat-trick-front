@@ -1,6 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { NhlTeamCardInterface } from '../@types/PropsInterface';
+import { NhlTeamInterface } from '../@types/NhlTeamInterface';
+
+export interface NhlTeamCardInterface {
+  team: NhlTeamInterface;
+}
 
 const NhlTeamCard = ({ team }: NhlTeamCardInterface) => {
   const navigate = useNavigate();
