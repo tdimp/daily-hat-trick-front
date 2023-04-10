@@ -1,5 +1,9 @@
 import React from 'react'
-import { PlayerPropsInterface } from '../@types/PropsInterface'
+import { PlayerInterface } from '../@types/PlayerInterface';
+
+export interface PlayerPropsInterface {
+  player: PlayerInterface;
+}
 
 const PlayerCard = ({player}: PlayerPropsInterface) => {
 
