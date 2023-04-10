@@ -1,6 +1,15 @@
 import React, { createContext, useState, useEffect } from 'react';
-import { UserContextInterface, UserContextType } from '../@types/UserInterface';
 import { PropsInterface } from '../@types/PropsInterface';
+
+export interface UserContextInterface {
+  username: string | null;
+  userId: number;
+}
+
+export type UserContextType = {
+  user: UserContextInterface | null;
+  setUser: React.Dispatch<React.SetStateAction<UserContextInterface | null>>
+}
 
 export const UserContext = createContext({} as UserContextType)
 
