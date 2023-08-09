@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import NhlTeamCard from './NhlTeamCard';
 import ErrorPage from './ErrorPage';
+import { off } from 'process';
 
 const Home = () => {
   const [games, setGames] = useState([]);
   const [errors, setErrors] = useState('');
+
+  const date = new Date()
+
+  const offseason = () => {
+    if (date.getMonth() > 6 && date.getMonth() < 10) {
+      if (date.getDate() < 10) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   useEffect(() => {
     fetch('https://statsapi.web.nhl.com/api/v1/schedule')
@@ -43,7 +55,7 @@ const Home = () => {
           </div>
         )
       })
-      : <ErrorPage message={"Today's matchups are currently unavailable. Try again later."} />} 
+      : <ErrorPage message={offseason() ? "The 2023-24 NHL season begins October 10th!" : "Today's matchups are currently unavailable. Try again later."} />} 
     </div>
   )
 }
