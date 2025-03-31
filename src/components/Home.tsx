@@ -19,7 +19,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    fetch('https://statsapi.web.nhl.com/api/v1/schedule')
+    fetch('https://api-web.nhle.com/v1/schedule/now')
     .then(res => {
       if (res.ok) {
         res.json()

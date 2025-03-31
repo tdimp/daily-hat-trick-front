@@ -19,7 +19,6 @@ const NhlTeamList = () => {
       }
   });
 }, []);
-
 teams?.sort((a, b) => {
   if (a.name < b.name) {
     return -1;
